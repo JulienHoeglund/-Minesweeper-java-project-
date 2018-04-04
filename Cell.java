@@ -17,7 +17,8 @@ public class Cell extends JComponent{
 	public Cell(boolean mine, int n){
 		boolean isMined = mine;
 		int neighbours = n;
-		int doubt = 0;			
+		boolean doubt = false ;
+		boolean certainty = false;			
 	}
 	public boolean isMined(){
 		return mined;
