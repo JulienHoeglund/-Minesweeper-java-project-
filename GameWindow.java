@@ -34,9 +34,10 @@ public class GameWindow extends JFrame
 		
 		JPanel panel = new JPanel();
 
-		for(Cell cell : grid.getGrid()){
+		/*for(Cell cell : grid.getGrid()){
 		}
-		Cell testCell= new Cell(true,0);
+		*/
+		Cell testCell= new Cell(true,0); // test d'affichage 1 cell 
 		CellListener listener = new CellListener();
 		testCell.add(listener);
 

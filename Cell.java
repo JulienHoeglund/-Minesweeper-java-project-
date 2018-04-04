@@ -10,11 +10,15 @@ import java.awt.*;
 
 public class Cell extends JComponent{
 	private boolean mined;
+	private boolean doubt;
+	private boolean certainty;
 	private int neighbours;
 
 	public Cell(boolean mine, int n){
 		boolean isMined = mine;
-		int neighbours = n;			
+		int neighbours = n;
+		boolean doubt = false ;
+		boolean certainty = false;			
 	}
 	public boolean isMined(){
 		return mined;
@@ -24,5 +28,18 @@ public class Cell extends JComponent{
 	}
 	public int getNeighbours(){
 		return neighbours;
+	}
+	public void userDoubt()
+	{
+		doubt = true;
+	}
+	public void userCertainty()
+	{	
+		certainty = true;
+	}
+	public void doubtLess()
+	{
+		doubt = false;
+		certainty = false;		
 	}
 }

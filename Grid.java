@@ -9,17 +9,19 @@ import javax.swing.*;
 import java.awt.*;
 public class Grid{
 	private Cell[] cells;
+	
 	public Grid(int sizeX, int sizeY){
 		cells = new Cell[sizeX*sizeY];
 	}
-	public void generate(int mines){
+	public void generate(int mines)
+	{
+		int i;
 		Random rand = new Random();
-		for(int i = 0; i < mines ; i++){
+
+		for (i = 0; i < mines ; i++) 
+		{
 			int x = rand.nextInt((cells.length)+1);
 			cells[x].setMined();
 		}
-	}
-	public Cell[] getGrid(){
-		return cells;
 	}
 }
