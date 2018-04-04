@@ -8,6 +8,6 @@ public class Grid{
 	private Cell[] cells;
 
 	public Grid(int sizeX, int sizeY){
-		cells = new Cells[sizeX,sizeY];
+		cells = new Cells[sizeX*sizeY];
 	}
 }
