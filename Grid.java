@@ -16,15 +16,13 @@ public class Grid{
 
 	public void Generate(int mines)
 	{
+		int i;
 		Random rand = new Random();
 
-		for (int i = 0; i < mines ; i++) 
+		for (i = 0; i < mines ; i++) 
 		{
 			int x = rand.nextInt((cells.length)+1);
 			cells[x].setMined();
 		}
-	}
-	public Cell[] getGrid(){
-		return cells;
 	}
 }
