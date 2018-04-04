@@ -37,4 +37,9 @@ public class Cell extends JComponent{
 	{	
 		certainty = true;
 	}
+	public void doubtLess()
+	{
+		doubt = false;
+		certainty = false;		
+	}
 }
