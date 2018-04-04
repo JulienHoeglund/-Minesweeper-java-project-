@@ -29,15 +29,15 @@ public class Cell extends JComponent{
 	public int getNeighbours(){
 		return neighbours;
 	}
-	public void userDoubt()
+	public void setUserDoubt()
 	{
 		doubt = true;
 	}
-	public void userCertainty()
+	public void setUserCertainty()
 	{	
 		certainty = true;
 	}
-	public void doubtLess()
+	public void setDoubtLess()
 	{
 		doubt = false;
 		certainty = false;		
