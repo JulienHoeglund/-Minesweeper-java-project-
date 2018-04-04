@@ -19,7 +19,7 @@ public class Cell extends JComponent{
 	public boolean isMined(){
 		return mined;
 	}
-	public boolean getNeighbours(){
+	public int getNeighbours(){
 		return neighbours;
 	}
 }
