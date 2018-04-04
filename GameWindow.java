@@ -8,7 +8,6 @@ public class GameWindow extends JFrame
 
 	public GameWindow(int w, int h, int x, int y)
 	{
-		this.fenetre = new JFrame();
 		this.height = h;
 		this.width = w;
 		this.xPos = x;
@@ -23,6 +22,9 @@ public class GameWindow extends JFrame
 		
 		grid=new Grid(20,20);
 		grid.generate();
+		for(Cell cell : grid.getGrid()){
+
+		}
 	}
 
 }
