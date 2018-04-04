@@ -5,8 +5,15 @@
 * @version 0.1
 * @author Julien Hoeglund, Valentin Lefebure
 */
-public class Cell{
-	public Cell(){
-		
+import javax.swing.*;
+import java.awt.*;
+
+public class Cell extends AbstractButton{
+	private boolean isMined;
+	private int neighbours;
+
+	public Cell(boolean mine, int n){
+		boolean isMined = mine;
+		int neighbours = n;			
 	}
 }

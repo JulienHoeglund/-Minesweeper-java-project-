@@ -6,7 +6,7 @@
 */
 public class Game{
 	private boolean exit; 
-	private Grid grid;
+	private GameWindow window;
 
 	public Game(){
 		exit = 0;
@@ -21,13 +21,14 @@ public class Game{
 		return false;
 	}
 	public void update(){
-		
+		if(window.isVisible())
 	}
 	public void end(){
 		
 	}
 	public void run(){
 		prep();
+		window = new GameWindow(500,500,0,0);
 		while(!exit){
 			exit=input();
 			update();

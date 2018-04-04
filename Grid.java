@@ -5,8 +5,9 @@
 * @author Julien Hoeglund, Valentin Lefebure
 */
 public class Grid{
-	//private Cell[][] grid;	
+	private Cell[] cells;
+
 	public Grid(int sizeX, int sizeY){
-		
+		cells = new Cells[sizeX,sizeY];
 	}
 }
