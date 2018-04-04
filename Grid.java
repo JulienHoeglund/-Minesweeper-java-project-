@@ -1,4 +1,4 @@
-import java.math.*;
+import java.util.Random;
 import javax.swing.*;
 import java.awt.*;
 /**
@@ -11,7 +11,7 @@ public class Grid{
 	private Cell[] cells;
 
 	public Grid(int sizeX, int sizeY){
-		cells = new Cells[sizeX*sizeY];
+		cells = new Cell[sizeX*sizeY];
 	}
 
 	public void Generate(int mines)
@@ -21,8 +21,8 @@ public class Grid{
 
 		for (i = 0; i < mines ; i++) 
 		{
-			rand.nextInt((sizeY*sizeX)+1);
-			cells[rand].isMined = true;
+			int x = rand.nextInt((cells.length)+1);
+			cells[x].setMined();
 		}
 	}
 }
