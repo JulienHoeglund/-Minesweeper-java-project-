@@ -23,7 +23,6 @@ public class GameWindow extends JFrame
 		
 		grid=new Grid(20,20);
 		grid.generate();
-
 	}
 
 }
