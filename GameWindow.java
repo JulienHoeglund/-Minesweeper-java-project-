@@ -1,5 +1,12 @@
+/**
+* The GameWindow class draws and updates the game window 
+*
+* @version 0.1
+* @author Julien Hoeglund, Valentin Lefebure
+*/
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class GameWindow extends JFrame
 {
@@ -21,10 +28,19 @@ public class GameWindow extends JFrame
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		grid=new Grid(20,20);
-		grid.generate();
-		for(Cell cell : grid.getGrid()){
+		grid.generate(10);
 
+		GridLayout layout = new GridLayout(5,5);
+		
+		JPanel panel = new JPanel();
+
+		for(Cell cell : grid.getGrid()){
 		}
+		Cell testCell= new Cell(true,0);
+		CellListener listener = new CellListener();
+		testCell.add(listener);
+
+		this.setVisible(true);
 	}
 
 }
