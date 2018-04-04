@@ -19,6 +19,9 @@ public class Cell extends JComponent{
 	public boolean isMined(){
 		return mined;
 	}
+	public void setMined(){
+		mined=true;
+	}
 	public int getNeighbours(){
 		return neighbours;
 	}
