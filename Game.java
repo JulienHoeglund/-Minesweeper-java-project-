@@ -25,7 +25,7 @@ public class Game{
 	}
 	public void run(){
 		prep();
-		window = new GameWindow(500,500,0,0);
+		window = new GameWindow(1000,1000,0,0);
 		while(!exit){
 			exit=input();
 			update();

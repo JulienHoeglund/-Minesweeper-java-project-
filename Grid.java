@@ -22,4 +22,7 @@ public class Grid{
 			cells[i].setMined();
 		}
 	}
+	public Cell getCell(int index){
+		return cell[index];
+	}
 }

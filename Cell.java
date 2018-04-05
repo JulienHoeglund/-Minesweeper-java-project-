@@ -8,7 +8,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Cell extends JComponent{
+public class Cell extends JButton{
 	private boolean mined;
 	private boolean doubt;
 	private boolean certainty;

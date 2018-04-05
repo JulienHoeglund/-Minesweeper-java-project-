@@ -15,31 +15,37 @@ public class GameWindow extends JFrame
 
 	public GameWindow(int w, int h, int x, int y)
 	{
-		this.height = h;
-		this.width = w;
-		this.xPos = x;
-		this.yPos = y;
+		this.height=h;
+		this.width=w;
+		this.xPos=x;
+		this.yPos=y;
 		this.setSize(width,height);	
 		this.setPreferredSize(new Dimension(width,height));
 		this.setMinimumSize(new Dimension(width,height));
-		//this.setMaximumSize(new Dimension(width,height));	
-
 		this.setLocation(xPos, yPos);
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		grid=new Grid(3,3);
+		int gridX=3, gridY=3; 
+		grid=new Grid(gridX,gridY);
 		//grid.generate(2);
-
-		GridLayout layout = new GridLayout(5,5);
+		GridLayout layout=new GridLayout();
 		
-		JPanel panel = new JPanel();
-
-		/*for(Cell cell : grid.getGrid()){
+		JPanel panel=new JPanel(layout);
+		
+		for(int i=0;i<gridX*gridY;i++){
+			
+			grid.getCell(i).add(listener);
 		}
-		*/
-		Cell testCell= new Cell(true,0); // test d'affichage 1 cell 
-		CellListener listener = new CellListener();
+				
+		// TEST AVEC 1 CELL
+
+		Cell testCell=new Cell(true,0);  
+		CellListener listener=new CellListener();
+		
 		testCell.addMouseListener(listener);
+		
+		panel.add(testCell);
+		this.add(panel);
 
 		this.setVisible(true);
 	}
