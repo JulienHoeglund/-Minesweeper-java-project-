@@ -27,8 +27,8 @@ public class GameWindow extends JFrame
 		this.setLocation(xPos, yPos);
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		grid=new Grid(20,20);
-		grid.generate(10);
+		grid=new Grid(3,3);
+		//grid.generate(2);
 
 		GridLayout layout = new GridLayout(5,5);
 		
@@ -39,7 +39,7 @@ public class GameWindow extends JFrame
 		*/
 		Cell testCell= new Cell(true,0); // test d'affichage 1 cell 
 		CellListener listener = new CellListener();
-		testCell.add(listener);
+		testCell.addMouseListener(listener);
 
 		this.setVisible(true);
 	}

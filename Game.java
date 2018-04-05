@@ -9,19 +9,16 @@ public class Game{
 	private GameWindow window;
 
 	public Game(){
-		exit = 0;
-		grid = new Grid();
+		exit = false;
 	}
 	public void prep(){
-		getParameters();
-		grid.create();	
+		//getParameters();	
 	}
-	public bool input(){
-		 
+	public boolean input(){
 		return false;
 	}
 	public void update(){
-		if(window.isVisible())
+		//if(window.isVisible())
 	}
 	public void end(){
 		

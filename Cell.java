@@ -1,5 +1,5 @@
 /**
-* The Cell class holds information about a grid cell :  location, whether it 
+* The Cell class holds information about a grid cell : location, whether it 
 * has a mine or the number of mines around it, its display state, etc  
 *
 * @version 0.1

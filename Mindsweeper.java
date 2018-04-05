@@ -1,4 +1,5 @@
 /**
+* This is the main class of the game 
 * @version 0.1
 * @author Julien Hoeglund, Valentin Lefebure
 */

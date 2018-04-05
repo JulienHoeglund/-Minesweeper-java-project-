@@ -1,3 +1,9 @@
+/**
+* The CellListener class receives and processes mouse inputs 
+*
+* @version 0.1
+* @author Julien Hoeglund, Valentin Lefebure
+*/
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +12,7 @@ public class CellListener implements MouseListener{
     public void actionPerformed(ActionEvent evenement){
             
     }
-    public CellListener(JPanel pan){
+    public CellListener(){
 
     }
     public void mouseClicked(MouseEvent e){
