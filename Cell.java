@@ -9,10 +9,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Cell extends JButton{
+	private boolean revealed;
 	private boolean mined;
 	private boolean doubt;
 	private boolean certainty;
 	private int neighbours;
+	private Graphics g;
 
 	public Cell(boolean mine, int n){
 		boolean isMined = mine;
@@ -20,8 +22,21 @@ public class Cell extends JButton{
 		boolean doubt = false ;
 		boolean certainty = false;			
 	}
-	public boolean isMined(){
+	public void paintComponent(Graphics g){
+		Graphics g2 = g.create();
+		if(this.isOpaque()){	
+			g2.setColor(this.getBackground());
+			g2.setFillRect(0,0,this.getWidth(),this.getHeight());
+		}
+			g2.FillRect(this.getX(),this.getY(),this.getWidth(),this.getHeight());
+	}
+	public void setGraphics(Graphics graphics){
+		g=graphics;
+	}public boolean isMined(){
 		return mined;
+	}
+	public void setRevealed(){
+		revealed=true;
 	}
 	public void setMined(){
 		mined=true;

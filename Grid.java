@@ -23,6 +23,6 @@ public class Grid{
 		}
 	}
 	public Cell getCell(int index){
-		return cell[index];
+		return cells[index];
 	}
 }

@@ -9,14 +9,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CellListener implements MouseListener{
-    public void actionPerformed(ActionEvent evenement){
-            
-    }
-    public CellListener(){
-
+    private Cell c;
+    public CellListener(Cell cell){
+    	c=cell;
     }
     public void mouseClicked(MouseEvent e){
-            
+            c.setRevealed();
 	}
 	public void mouseEntered(MouseEvent e){
             
