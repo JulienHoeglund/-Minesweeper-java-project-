@@ -17,18 +17,23 @@ public class Cell extends JButton{
 	private Graphics g;
 
 	public Cell(boolean mine, int n){
-		boolean isMined = mine;
-		int neighbours = n;
-		boolean doubt = false ;
-		boolean certainty = false;			
+		revealed=false;
+		mined = mine;
+		neighbours = n;
+		doubt = false ;
+		certainty = false;			
 	}
 	public void paintComponent(Graphics g){
 		Graphics g2 = g.create();
 		if(this.isOpaque()){	
 			g2.setColor(this.getBackground());
-			g2.setFillRect(0,0,this.getWidth(),this.getHeight());
+			g2.fillRect(0,0,this.getWidth(),this.getHeight());
 		}
-			g2.FillRect(this.getX(),this.getY(),this.getWidth(),this.getHeight());
+			this.setForeground(Color.RED);
+			if(this.isMined()){
+				g2.fillRect(0,0,this.getWidth(),this.getHeight());
+				System.out.println("Mined!");
+			}
 	}
 	public void setGraphics(Graphics graphics){
 		g=graphics;
@@ -37,6 +42,9 @@ public class Cell extends JButton{
 	}
 	public void setRevealed(){
 		revealed=true;
+	}
+	public boolean getRevealState(){
+		return revealed; 
 	}
 	public void setMined(){
 		mined=true;

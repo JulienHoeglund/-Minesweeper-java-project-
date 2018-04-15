@@ -30,16 +30,14 @@ public class GameWindow extends JFrame
 		
 		GridLayout layout=new GridLayout();
 		JPanel panel=new JPanel(layout);
-		
-		CellListener listener=new CellListener();
-		Cell c; 
+		this.setLayout(new FlowLayout());
 		for(int i=0;i<gridX*gridY;i++){
-			c = grid.getCell(i);
-			//c.setGraphics(this.getGraphics);
-			c.addMouseListener(new CellListener(getCell(i)));
-			panel.add(grid.getCell(i));
+			Cell c = grid.getCell(i);
+			c.setPreferredSize(new Dimension(50,50));
+			c.addMouseListener(new CellListener(c));
+			panel.add(c);
 		}
-		this.add(panel,BorderLayout.CENTER);
+		this.add(panel);
 		this.setVisible(true);
 	}
 
