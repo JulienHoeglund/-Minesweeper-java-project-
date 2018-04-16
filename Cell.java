@@ -16,10 +16,10 @@ public class Cell extends JButton{
 	private int neighbours;
 	private Graphics g;
 
-	public Cell(boolean mine, int n){
+	public Cell(){
 		revealed=false;
-		mined = mine;
-		neighbours = n;
+		mined = false;
+		neighbours = 0;
 		doubt = false ;
 		certainty = false;			
 	}
@@ -29,10 +29,9 @@ public class Cell extends JButton{
 			g2.setColor(this.getBackground());
 			g2.fillRect(0,0,this.getWidth(),this.getHeight());
 		}
-			this.setForeground(Color.RED);
-			if(this.isMined()){
-				g2.fillRect(0,0,this.getWidth(),this.getHeight());
-				System.out.println("Mined!");
+			if(revealed&& mined){
+				g2.setColor(Color.BLACK);
+				g2.fillRect(0,0,this.getWidth(),this.getHeight());				
 			}
 	}
 	public void setGraphics(Graphics graphics){

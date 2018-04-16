@@ -26,7 +26,7 @@ public class GameWindow extends JFrame
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		int gridX=3, gridY=3; 
 		grid=new Grid(gridX,gridY);
-		grid.generate(2);
+		grid.generateMines(2);
 		
 		GridLayout layout=new GridLayout();
 		JPanel panel=new JPanel(layout);
@@ -36,6 +36,7 @@ public class GameWindow extends JFrame
 			c.setPreferredSize(new Dimension(50,50));
 			c.addMouseListener(new CellListener(c));
 			panel.add(c);
+			System.out.println(c.isMined());
 		}
 		this.add(panel);
 		this.setVisible(true);
