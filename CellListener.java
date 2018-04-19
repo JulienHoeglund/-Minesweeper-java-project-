@@ -16,6 +16,10 @@ public class CellListener implements MouseListener{
     public void mouseClicked(MouseEvent e){
     		c.setRevealed();
     		c.repaint();
+    		if(c.isMined()){
+    			c.setVictory();
+    			System.out.println("You lose !");
+    		}
     }
 	public void mouseEntered(MouseEvent e){       
 	}
