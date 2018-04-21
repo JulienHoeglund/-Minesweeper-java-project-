@@ -10,6 +10,6 @@ public class Game{
 	public Game(){
 	}
 	public void run(){
-		window = new GameWindow(1000,1000,500,0);
+		window = new GameWindow(1000,1000,500,500);
 	}
 }

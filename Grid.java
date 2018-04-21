@@ -25,4 +25,9 @@ public class Grid{
 	public Cell getCell(int index){
 		return cells[index];
 	}
+	public void revealAll(){
+		for (int i=0;i<cells.length;i++){
+			cells[i].setRevealed();
+		}	
+	}
 }

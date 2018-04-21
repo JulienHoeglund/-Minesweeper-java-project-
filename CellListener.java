@@ -10,15 +10,17 @@ import java.awt.*;
 
 public class CellListener implements MouseListener{
     private Cell c;
-    public CellListener(Cell cell){
+    private MinePanel p;
+    public CellListener(Cell cell, MinePanel panel){
     		c=cell;
+    		p=panel;
     }
     public void mouseClicked(MouseEvent e){
     		c.setRevealed();
     		c.repaint();
     		if(c.isMined()){
-    			c.setVictory();
-    			System.out.println("You lose !");
+    			p.setEnd(false); //set end with 'victory' set to false
+    			p.repaint();
     		}
     }
 	public void mouseEntered(MouseEvent e){       

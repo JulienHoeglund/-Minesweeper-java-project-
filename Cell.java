@@ -15,14 +15,14 @@ public class Cell extends JButton{
 	private boolean certainty;
 	private int neighbours;
 	private Graphics g;
-	private boolean victory;
+	private boolean defeat;
 	public Cell(){
 		revealed=false;
 		mined = false;
 		neighbours = 0;
 		doubt = false ;
 		certainty = false;			
-		victory = false;
+		defeat = false;
 	}
 	public void paintComponent(Graphics g){
 		Graphics g2 = g.create();
@@ -30,7 +30,7 @@ public class Cell extends JButton{
 			g2.setColor(this.getBackground());
 			g2.fillRect(0,0,this.getWidth(),this.getHeight());
 		}
-			if(mined){
+			if(revealed && mined){
 				g2.setColor(Color.BLACK);
 				g2.fillRect(0,0,this.getWidth(),this.getHeight());				
 			}
@@ -65,11 +65,10 @@ public class Cell extends JButton{
 		doubt = false;
 		certainty = false;		
 	}
-	public boolean getVictoryState(){
-		return victory;
+	public boolean getGameState(){
+		return defeat;
 	}
-	public void setVictory(){
-		victory=true;
-		
+	public void setDefeat(){
+		defeat=true;
 	}
 }
