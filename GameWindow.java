@@ -26,17 +26,17 @@ public class GameWindow extends JFrame
     	
     	int gridX=10, gridY=10,mines=40; 
     	grid=new Grid(gridX,gridY);
-    	grid.generateMines(mines);
+    	grid.generate(mines);
     	
     	JLabel timer = new JLabel("Timer : 30s");	
     	JLabel blank = new JLabel("Number of mines : " + mines);
     	MinePanel board = new MinePanel(new GridLayout(gridX,gridY),grid); 
-    	MenuPanel menu = new MenuPanel(new GridLayout(0,1));
+    	MenuPanel menu = new MenuPanel(new GridLayout(0,1),grid);
 
     	for(int i=0;i<gridY*gridX;i++){
     		Cell c = grid.getCell(i);
     		c.setPreferredSize(new Dimension(30,30));
-    		c.addMouseListener(new CellListener(c,board));
+    		c.addMouseListener(new CellListener(c,board,menu));
     		board.add(c);			
     	}
     	

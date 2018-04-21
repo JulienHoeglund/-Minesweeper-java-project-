@@ -13,16 +13,18 @@ public class Cell extends JButton{
 	private boolean mined;
 	private boolean doubt;
 	private boolean certainty;
-	private int neighbours;
+	private int neighbors;
 	private Graphics g;
 	private boolean defeat;
+	private boolean clicked;
 	public Cell(){
 		revealed=false;
 		mined = false;
-		neighbours = 0;
+		neighbors = 0;
 		doubt = false ;
 		certainty = false;			
 		defeat = false;
+		clicked=false;
 	}
 	public void paintComponent(Graphics g){
 		Graphics g2 = g.create();
@@ -30,10 +32,14 @@ public class Cell extends JButton{
 			g2.setColor(this.getBackground());
 			g2.fillRect(0,0,this.getWidth(),this.getHeight());
 		}
-			if(revealed && mined){
-				g2.setColor(Color.BLACK);
-				g2.fillRect(0,0,this.getWidth(),this.getHeight());				
-			}
+		if(clicked){
+			g2.setColor(Color.BLACK);
+			g2.drawString(Integer.toString(neighbors),15,15);				
+		}
+		if(revealed && mined){
+			g2.setColor(Color.BLACK);
+			g2.fillRect(0,0,this.getWidth(),this.getHeight());
+		}
 	}
 	public void setGraphics(Graphics graphics){
 		g=graphics;
@@ -43,14 +49,20 @@ public class Cell extends JButton{
 	public void setRevealed(){
 		revealed=true;
 	}
+	public void setClicked(){
+		clicked=true;
+	}
+	public void setNeighbors(int n){
+		neighbors=n;
+	}
 	public boolean getRevealState(){
 		return revealed; 
 	}
 	public void setMined(){
 		mined=true;
 	}
-	public int getNeighbours(){
-		return neighbours;
+	public int getNeighbors(){
+		return neighbors;
 	}
 	public void setUserDoubt()
 	{

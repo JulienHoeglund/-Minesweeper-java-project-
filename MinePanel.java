@@ -11,7 +11,7 @@ public class MinePanel extends JPanel{
 	private boolean end;
 	private boolean victory;
 	private Grid grid;
-	public MinePanel(GridLayout layout,Grid g){
+	public MinePanel(GridLayout layout, Grid g){
 		super(layout);
 		grid=g;
 	}
@@ -29,8 +29,9 @@ public class MinePanel extends JPanel{
 			}
 			else{
 				g2.drawString("Defeat !",490,50);
+				System.out.println("deafeat");
 			}
-		grid.revealAll();
+			grid.revealAll();
 		}
 	}
 	public void setEnd(boolean v){

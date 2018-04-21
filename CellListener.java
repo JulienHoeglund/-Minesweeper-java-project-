@@ -11,16 +11,21 @@ import java.awt.*;
 public class CellListener implements MouseListener{
     private Cell c;
     private MinePanel p;
-    public CellListener(Cell cell, MinePanel panel){
+    private MenuPanel m;
+    public CellListener(Cell cell, MinePanel panel, MenuPanel menu){
     		c=cell;
     		p=panel;
+    		m=menu;
     }
     public void mouseClicked(MouseEvent e){
     		c.setRevealed();
+    		c.setClicked();
     		c.repaint();
     		if(c.isMined()){
     			p.setEnd(false); //set end with 'victory' set to false
     			p.repaint();
+    			m.setEnd(false);
+    			m.repaint();
     		}
     }
 	public void mouseEntered(MouseEvent e){       
