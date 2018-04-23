@@ -28,37 +28,75 @@ public class Grid{
 			cells[x].setMined();
 		}
 		//Number of neighbor mines 
-		int n;
+		int n,p;		
 		try{
 			for(int i=0;i<cells.length;i++){
 				n=0;
-				if((i-X)>0){
-					if(cells[(i-X)-1].isMined())
+				p=i-X;
+				if((i+1)%X!=0){
+					if(p+1>0){
+						if(cells[p+1].isMined()){
+							n++;
+							System.out.println(i +"a0");	
+						}
+					}	
+				}	
+				if(p>=0){
+					if(cells[p].isMined()){
 						n++;
-					if(cells[i-X].isMined())
-						n++;
-					if(cells[(i-X)+1].isMined())
-						n++;
+						System.out.println(i +"a1");	
+					}
+					if(i%X!=0){
+						if((p-1)>=0){
+							if(cells[p-1].isMined()){
+								n++;
+								System.out.println(i +"a2");	
+							}
+						}
+					}
+				}	
+				if((i+1)%X!=0){
+					if((i+1)<cells.length){
+						if(cells[i+1].isMined()){
+							n++;
+							System.out.println(i+"b0");					
+						}
+					}
 				}
-				if(i-1>0){
-					if(cells[i-1].isMined())
-						n++;
-					if(cells[i].isMined())
-						n++;
-					if(cells[i+1].isMined())
-						n++;
+				if(i%X!=0){
+					if((i-1)>=0){
+						if(cells[i-1].isMined()){
+							n++;
+							System.out.println(i+"b1");					
+						}				
+					}
+				}	
+				p=i+X;
+				if((i+1)%X!=0){
+					if(p+1<cells.length){
+						if(cells[p+1].isMined()){
+							n++;
+							System.out.println(i+"c0");		
+						}
+					}
 				}
-				if((i+X)<cells.length){
-					if(cells[(i+X)-1].isMined())
+				if(p<cells.length){
+					if(cells[p].isMined()){
 						n++;
-					if(cells[i+X].isMined())
-						n++;
-					if(cells[(i+X)+1].isMined())
-						n++;
+						System.out.println(i+"c1");	
+					}
+				}
+				if(i%X!=0){
+					if((p-1)<cells.length){
+						if(cells[p-1].isMined()){
+							n++;
+							System.out.println(i+"c2"+i%X);	
+						}
+					}
 				}
 				cells[i].setNeighbors(n);
 				index=i;
-			}	
+			}
 		}catch(ArrayIndexOutOfBoundsException e){
 			System.err.println("Error : " + e.getMessage());
 			System.err.println("index :" + index);		
