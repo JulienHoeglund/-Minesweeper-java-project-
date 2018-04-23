@@ -29,7 +29,6 @@ public class MinePanel extends JPanel{
 			}
 			else{
 				g2.drawString("Defeat !",490,50);
-				System.out.println("deafeat");
 			}
 			grid.revealAll();
 		}

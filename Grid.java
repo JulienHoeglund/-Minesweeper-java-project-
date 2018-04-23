@@ -18,7 +18,7 @@ public class Grid{
 		Y=sizeY;
 		cells=new Cell[X*Y];
 		for (int i=0;i<cells.length;i++)
-			cells[i]=new Cell();
+			cells[i]=new Cell(this,i);
 	}
 	public void generate(int mines){
 		//Mine generation
@@ -37,20 +37,17 @@ public class Grid{
 					if(p+1>0){
 						if(cells[p+1].isMined()){
 							n++;
-							System.out.println(i +"a0");	
 						}
 					}	
 				}	
 				if(p>=0){
 					if(cells[p].isMined()){
 						n++;
-						System.out.println(i +"a1");	
 					}
 					if(i%X!=0){
 						if((p-1)>=0){
 							if(cells[p-1].isMined()){
 								n++;
-								System.out.println(i +"a2");	
 							}
 						}
 					}
@@ -59,7 +56,6 @@ public class Grid{
 					if((i+1)<cells.length){
 						if(cells[i+1].isMined()){
 							n++;
-							System.out.println(i+"b0");					
 						}
 					}
 				}
@@ -67,7 +63,6 @@ public class Grid{
 					if((i-1)>=0){
 						if(cells[i-1].isMined()){
 							n++;
-							System.out.println(i+"b1");					
 						}				
 					}
 				}	
@@ -76,21 +71,18 @@ public class Grid{
 					if(p+1<cells.length){
 						if(cells[p+1].isMined()){
 							n++;
-							System.out.println(i+"c0");		
 						}
 					}
 				}
 				if(p<cells.length){
 					if(cells[p].isMined()){
 						n++;
-						System.out.println(i+"c1");	
 					}
 				}
 				if(i%X!=0){
 					if((p-1)<cells.length){
 						if(cells[p-1].isMined()){
 							n++;
-							System.out.println(i+"c2"+i%X);	
 						}
 					}
 				}
@@ -109,5 +101,57 @@ public class Grid{
 		for (int i=0;i<cells.length;i++){
 			cells[i].setRevealed();
 		}	
+	}
+	public void revealNeighbors(int i){
+		int p=i-X;
+		if((i+1)%X!=0){
+			if(p+1>0){
+				cells[p+1].setRevealed();
+				cells[p+1].repaint();
+			}	
+			if(p>=0){
+				cells[p].setRevealed();
+				cells[p].repaint();
+			}
+			if(i%X!=0){
+				if((p-1)>=0){
+					if(cells[p-1].isMined()){	
+						cells[p-1].setRevealed();
+						cells[p-1].repaint();
+					}
+				}
+			}
+		}	
+		if((i+1)%X!=0){
+			if((i+1)<cells.length){
+				cells[i+1].setRevealed();
+				cells[i+1].repaint();
+			}
+		}
+		if(i%X!=0){
+			if((i-1)>=0){
+				if(cells[i-1].isMined()){
+					cells[i+1].setRevealed();
+					cells[i+1].repaint();
+				}				
+			}
+		}	
+		p=i+X;
+		if((i+1)%X!=0){
+			if(p+1<cells.length){
+				cells[p+1].setRevealed();
+				cells[p+1].repaint();
+			}
+		}
+		if(p<cells.length){
+			cells[p].setRevealed();
+			cells[p].repaint();
+		}
+		if(i%X!=0){
+			if((p-1)<cells.length){
+				cells[p-1].setRevealed();
+				cells[p-1].repaint();
+			}
+		}
 	}
 }

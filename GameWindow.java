@@ -18,16 +18,17 @@ public class GameWindow extends JFrame
 		this.width=w;
 		this.xPos=x;
 		this.yPos=y;
-		this.setTitle("MindSweeper!");
+		this.setTitle("Minesweeper");
 		this.setPreferredSize(new Dimension(width,height));
 		this.setMaximumSize(new Dimension(width,height));
 		this.setLocation(xPos, yPos);
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	
-    	int gridX=10, gridY=10,mines=40; 
+    	boolean newGame=false;
+    	int gridX=10, gridY=10,mines=20; 
     	grid=new Grid(gridX,gridY);
     	grid.generate(mines);
-    	
+
     	JLabel timer = new JLabel("Timer : 30s");	
     	JLabel blank = new JLabel("Number of mines : " + mines);
     	MinePanel board = new MinePanel(new GridLayout(gridX,gridY),grid); 
@@ -39,7 +40,7 @@ public class GameWindow extends JFrame
     		c.addMouseListener(new CellListener(c,board,menu));
     		board.add(c);			
     	}
-    	
+
     	JButton ng = new JButton ("New Game ");
     	JButton rg = new JButton ("Resume Game ");
     	menu.add(ng);
@@ -49,5 +50,5 @@ public class GameWindow extends JFrame
     	this.add(menu,BorderLayout.EAST);
     	this.pack();
     	this.setVisible(true);
-		}
+    }
 }

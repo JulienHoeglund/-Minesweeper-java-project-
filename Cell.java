@@ -17,7 +17,10 @@ public class Cell extends JButton{
 	private Graphics g;
 	private boolean defeat;
 	private boolean clicked;
-	public Cell(){
+	private Grid grid;
+	private int id;
+
+	public Cell(Grid gd, int i){
 		revealed=false;
 		mined = false;
 		neighbors = 0;
@@ -25,16 +28,31 @@ public class Cell extends JButton{
 		certainty = false;			
 		defeat = false;
 		clicked=false;
+		grid=gd;
+		id=i;
 	}
 	public void paintComponent(Graphics g){
 		Graphics g2 = g.create();
 		if(this.isOpaque()){	
-			g2.setColor(this.getBackground());
+			g2.setColor(Color.GRAY);
 			g2.fillRect(0,0,this.getWidth(),this.getHeight());
 		}
-		if(clicked){
-			g2.setColor(Color.BLACK);
-			g2.drawString(Integer.toString(neighbors),15,15);				
+		if(revealed){
+			g2.setColor(Color.WHITE);
+			g2.fillRect(0,0,this.getWidth(),this.getHeight());
+			if(neighbors!=0){
+				String s = Integer.toString(neighbors);
+				g2.setColor(Color.BLACK);
+				Font font = new Font("TimesRoman", Font.PLAIN, 30);
+				g2.setFont(font); 
+				FontMetrics m = g2.getFontMetrics(font);
+				int x = (this.getWidth() - m.stringWidth(s))/2;
+				int y = (this.getHeight() - m.getHeight())/2;
+				g2.drawString(s,x,y);				
+			}
+		}	
+		if(revealed && neighbors==0 && !mined){
+			grid.revealNeighbors(id);
 		}
 		if(revealed && mined){
 			g2.setColor(Color.BLACK);

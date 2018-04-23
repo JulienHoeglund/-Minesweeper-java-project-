@@ -18,22 +18,22 @@ public class CellListener implements MouseListener{
     		m=menu;
     }
     public void mouseClicked(MouseEvent e){
-    		c.setRevealed();
-    		c.setClicked();
-    		c.repaint();
-    		if(c.isMined()){
-    			p.setEnd(false); //set end with 'victory' set to false
-    			p.repaint();
-    			m.setEnd(false);
-    			m.repaint();
-    		}
     }
 	public void mouseEntered(MouseEvent e){       
 	}
 	public void mouseExited(MouseEvent e){
 	}
 	public void mousePressed(MouseEvent e){        
-	}
+			c.setRevealed();
+    		c.setClicked();
+    		c.repaint();
+    		if(c.isMined()){
+    			p.setEnd(false); //end with 'victory' set to false (defeat)
+    			p.repaint();
+    			m.setEnd(false);
+    			m.repaint();
+    		}
+    }
 	public void mouseReleased(MouseEvent e){
 	}
 }
