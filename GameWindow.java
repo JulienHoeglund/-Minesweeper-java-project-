@@ -25,15 +25,15 @@ public class GameWindow extends JFrame
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	
     	boolean newGame=false;
-    	int gridX=10, gridY=10,mines=20; 
+    	int gridX=10, gridY=10,mines=2; 
     	grid=new Grid(gridX,gridY);
     	grid.generate(mines);
-
+    	
     	JLabel timer = new JLabel("Timer : 30s");	
     	JLabel blank = new JLabel("Number of mines : " + mines);
     	MinePanel board = new MinePanel(new GridLayout(gridX,gridY),grid); 
     	MenuPanel menu = new MenuPanel(new GridLayout(0,1),grid);
-
+    	
     	for(int i=0;i<gridY*gridX;i++){
     		Cell c = grid.getCell(i);
     		c.setPreferredSize(new Dimension(30,30));
