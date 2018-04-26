@@ -14,6 +14,8 @@ public class MenuPanel extends JPanel{
 	public MenuPanel(GridLayout layout, Grid g){
 		super(layout);
 		grid=g;
+	}public MenuPanel(){
+		super();
 	}
 	@Override
 	public void paintComponent(Graphics g){
