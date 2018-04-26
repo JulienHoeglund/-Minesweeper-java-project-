@@ -20,6 +20,7 @@ public class Cell extends JButton{
 	private Image q;
 	private Image s;
 	private boolean dec;
+	private boolean exploded;
 	public Cell(Grid gd, int i){
 		super();
 		revealed=false;
@@ -32,6 +33,17 @@ public class Cell extends JButton{
 		q = Toolkit.getDefaultToolkit().getImage("img/questionmark.png");
 		s = Toolkit.getDefaultToolkit().getImage("img/star.png");
 		dec=false;
+		exploded=false;
+	}
+	public void drawFlag(Graphics g2){
+		switch(f){
+			case 1: //g2.drawImage(star,30,30,this);
+				g2.drawString("*",30,30);
+				break;	
+			case 2: //g2.drawImage(qmark,30,30,this);
+				g2.drawString("?",30,30);
+				break;	
+		}
 	}
 	public void paintComponent(Graphics g1){
 		Graphics g2 = g1.create();
@@ -43,14 +55,7 @@ public class Cell extends JButton{
 		g2.setColor(Color.WHITE);
 		g2.setFont(font); 		
 		if(!revealed){
-			switch(f){
-				case 1: //g2.drawImage(star,30,30,this);
-						g2.drawString("*",30,30);
-						break;	
-				case 2: //g2.drawImage(qmark,30,30,this);
-						g2.drawString("?",30,30);
-						break;	
-			}
+			drawFlag(g2);	
 		}
 		if(revealed){
 			g2.setColor(Color.WHITE);
@@ -75,6 +80,12 @@ public class Cell extends JButton{
 			if(mined){
 				g2.setColor(Color.BLACK);
 				g2.fillRect(0,0,this.getWidth(),this.getHeight());
+				drawFlag(g2);
+				if(exploded){
+					g2.setColor(Color.RED);
+					g2.fillRect(0,0,this.getWidth(),this.getHeight());
+					System.out.println("exploded");
+				}
 			}
 		}
 	}
@@ -83,8 +94,10 @@ public class Cell extends JButton{
 	}public boolean isMined(){
 		return mined;
 	}
-	public void setRevealed(){
+	public void setRevealed(boolean x){
 		revealed=true;
+		if(x)
+			exploded=x;
 	}
 	public void setNeighbors(int n){
 		neighbors=n;
