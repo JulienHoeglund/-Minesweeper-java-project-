@@ -74,6 +74,10 @@ public class Cell extends JButton{
                 System.out.println(g.getCellsLeft());
                 if(g.getCellsLeft()==0 && g.getGameState()!=2)
                     g.setEnd(true);
+                if(f==1 && g.getGameState()!=0){	
+					g2.setColor(Color.RED);
+					g2.drawString("...",30,30);
+				}
             }
 			if(neighbors!=0){
 				String s = Integer.toString(neighbors);
@@ -95,6 +99,10 @@ public class Cell extends JButton{
 					g2.fillRect(0,0,this.getWidth(),this.getHeight());
 				    g.setEnd(false);     //false=defeat
 					System.out.println(id+": "+"b");
+				}
+				if(f==0){
+					g2.setColor(Color.RED);
+					g2.drawString("!",30,30);
 				}
 			}
 		}

@@ -1,12 +1,12 @@
 import java.awt.event.*;
 
-public class NewGameButton implements ActionListener{
+public class PlayGameButton implements ActionListener{
 	private GameWindow w;
-	public NewGameButton(GameWindow window){
+	public PlayGameButton(GameWindow window){
 		w=window;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
-		w.config();
+		w.runGame();
 	}
 }
