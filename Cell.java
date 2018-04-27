@@ -41,10 +41,10 @@ public class Cell extends JButton{
 	public void drawFlag(Graphics g2){
 		switch(f){
 			case 1: //g2.drawImage(star,30,30,this);
-				g2.drawString("*",30,30);
+					g2.drawString("*",30,30);
 				break;	
 			case 2: //g2.drawImage(qmark,30,30,this);
-				g2.drawString("?",30,30);
+					g2.drawString("?",30,30);
 				break;	
 		}
 	}
@@ -71,7 +71,6 @@ public class Cell extends JButton{
             if(!mined && !r){
                 r=true;
                 g.decCellsLeft();
-                System.out.println(g.getCellsLeft());
                 if(g.getCellsLeft()==0 && g.getGameState()!=2)
                     g.setEnd(true);
                 if(f==1 && g.getGameState()!=0){	
@@ -98,7 +97,6 @@ public class Cell extends JButton{
 					g2.setColor(Color.RED);
 					g2.fillRect(0,0,this.getWidth(),this.getHeight());
 				    g.setEnd(false);     //false=defeat
-					System.out.println(id+": "+"b");
 				}
 				if(f==0){
 					g2.setColor(Color.RED);

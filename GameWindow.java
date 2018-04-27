@@ -25,7 +25,7 @@ public class GameWindow extends JFrame{
         menu();
         X=4;
         Y=4;
-        mines=0;
+        mines=1;
     }
     public void menu(){
         JPanel menu = new JPanel();
@@ -48,20 +48,20 @@ public class GameWindow extends JFrame{
 
         JPanel menu = new JPanel();
         
-        JLabel lwidth = new JLabel("Width: 4"); 
+        JLabel lwidth = new JLabel("Width: "+X); 
         JButton mW = new JButton("-");
         mW.addActionListener(new MinusWidth(this,lwidth));
         JButton pW = new JButton("+");
         pW.addActionListener(new PlusWidth(this,lwidth));
                 
-        JLabel lheight = new JLabel("Height: 4"); 
+        JLabel lheight = new JLabel("Height: "+Y); 
         JButton mH = new JButton("-");
         mH.addActionListener(new MinusHeight(this,lheight));
         JButton pH = new JButton("+");
         pH.addActionListener(new PlusHeight(this,lheight));
 
         
-        JLabel lmines = new JLabel("Mines");
+        JLabel lmines = new JLabel("Mines: "+mines);
         JButton mM = new JButton("-");
         mM.addActionListener(new MinusMine(this,lmines));
         

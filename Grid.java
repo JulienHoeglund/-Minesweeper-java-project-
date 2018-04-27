@@ -66,7 +66,6 @@ public class Grid{
 		}
 		//Number of neighbor mines 
 		int n,p;		
-
 		for(int i=0;i<cells.length;i++){
 			n=0;
 			p=i-X;

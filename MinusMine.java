@@ -14,7 +14,7 @@ public class MinusMine implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		if(w.getMines()>0){
 			w.setMines(w.getMines()-1);
-			l.setText("Width: "+Integer.toString(w.getMines()));
+			l.setText("Mines: "+Integer.toString(w.getMines()));
 		}
 	}
 }
