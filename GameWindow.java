@@ -13,7 +13,7 @@ public class GameWindow extends JFrame{
 	private Grid grid;
 	private boolean end;
     public GameWindow(int w, int h, int x, int y){
-		this.setTitle("Minesweeper");
+		this.setTitle("(Play with) Minerves");
 		this.setPreferredSize(new Dimension(w,h));
 		this.setLocation(x, y);
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,19 +41,20 @@ public class GameWindow extends JFrame{
 		getContentPane().repaint();
     	this.setLayout(new BorderLayout());
     	
-        int gridX=10, gridY=10,mines=10; 
-    	JLabel count = new JLabel(Integer.toString(mines)+" mines");
+        int gridX=4, gridY=4,mines=2; 
+    	JLabel count = new JLabel(" Mines: " +Integer.toString(mines));
         
         grid=new Grid(gridX,gridY,mines,count);
-        grid.generate();
         
         MinePanel board = new MinePanel(new GridLayout(gridX,gridY),grid); 
         MenuPanel menu = new MenuPanel(new GridLayout(0,1),grid);
+    	grid.setMenu(menu);
+        grid.generate();
         
-    	for(int i=0;i<gridY*gridX;i++){
+        for(int i=0;i<gridY*gridX;i++){
     		Cell c = grid.getCell(i);
     		c.setPreferredSize(new Dimension(30,30));
-    		c.addMouseListener(new CellListener(c,board,menu,grid));
+    		c.addMouseListener(new CellListener(c,board,grid));
     		board.add(c);			
     	}
 

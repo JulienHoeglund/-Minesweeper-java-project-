@@ -11,6 +11,7 @@ import java.awt.*;
 public class Cell extends JButton{
 	private boolean revealed;
 	private boolean mined;
+	private boolean exploded;
 	private int neighbors;
 	private Graphics gs;
 	private boolean defeat;
@@ -20,20 +21,22 @@ public class Cell extends JButton{
 	private Image q;
 	private Image s;
 	private boolean dec;
-	private boolean exploded;
+	private boolean r;
+	private MenuPanel m;
 	public Cell(Grid gd, int i){
 		super();
 		revealed=false;
 		mined = false;
 		neighbors = 0;
 		defeat = false;
+		exploded=false;
 		g=gd;
 		id=i;
 		f=0;
 		q = Toolkit.getDefaultToolkit().getImage("img/questionmark.png");
 		s = Toolkit.getDefaultToolkit().getImage("img/star.png");
 		dec=false;
-		exploded=false;
+		r=false;
 	}
 	public void drawFlag(Graphics g2){
 		switch(f){
@@ -61,17 +64,23 @@ public class Cell extends JButton{
 			g2.setColor(Color.WHITE);
 			g2.fillRect(0,0,this.getWidth(),this.getHeight());
 			if(getFlag()==1 && !dec){
-                g.decFlagCount();
-                System.out.println(g.getFlagCount());
                 dec=true;
+                g.decFlagCount();
         		g.updateLabel();
+            }
+            if(!mined && !r){
+                r=true;
+                g.decCellsLeft();
+                System.out.println(g.getCellsLeft());
+                if(g.getCellsLeft()==0 && g.getGameState()!=2)
+                    g.setEnd(true);
             }
 			if(neighbors!=0){
 				String s = Integer.toString(neighbors);
 				g2.setColor(Color.BLACK);
 				FontMetrics m = g2.getFontMetrics(font);
 				int x = (this.getWidth() - m.stringWidth(s))/2;
-				int y = (this.getHeight() - m.getHeight())/2;
+				int y = ((this.getHeight() - m.getHeight())/2)+15;
 				g2.drawString(s,x,y);				
 			}
 			if(!mined && neighbors==0){
@@ -84,7 +93,8 @@ public class Cell extends JButton{
 				if(exploded){
 					g2.setColor(Color.RED);
 					g2.fillRect(0,0,this.getWidth(),this.getHeight());
-					System.out.println("exploded");
+				    g.setEnd(false);     //false=defeat
+					System.out.println(id+": "+"b");
 				}
 			}
 		}
@@ -110,12 +120,6 @@ public class Cell extends JButton{
 	}
 	public int getNeighbors(){
 		return neighbors;
-	}
-	public boolean getGameState(){
-		return defeat;
-	}
-	public void setDefeat(){
-		defeat=true;
 	}
 	public int getFlag(){
 		return f;

@@ -20,6 +20,8 @@ public class MenuPanel extends JPanel{
 	@Override
 	public void paintComponent(Graphics g){
 		Graphics g2 = g.create();
+		Font font = new Font("TimesRoman", Font.PLAIN, 20);
+		g2.setFont(font); 		
 		if(this.isOpaque()){	
 			g2.setColor(this.getBackground());
 			g2.fillRect(0,0,this.getWidth(),this.getHeight());
@@ -27,12 +29,12 @@ public class MenuPanel extends JPanel{
 		if(end){
 			g2.setColor(Color.RED);
 			if(victory){
-				g2.drawString("Victory !",490,50);
+				g2.drawString("Victory !",(this.getWidth()/2)-40,this.getWidth()/2);
 			}
 			else{
-				g2.drawString("Defeat !",490,50);
+
+				g2.drawString("Defeat !",(this.getWidth()/2)-40,this.getWidth()/2);
 			}
-		grid.revealAll();
 		}
 	}
 	public void setEnd(boolean v){

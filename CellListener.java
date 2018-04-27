@@ -11,45 +11,45 @@ import java.awt.*;
 public class CellListener implements MouseListener{
     private Cell c;
     private MinePanel p;
-    private MenuPanel m;
     private Grid g;
-    public CellListener(Cell cell, MinePanel panel, MenuPanel menu,Grid grid){
+    public CellListener(Cell cell, MinePanel panel,Grid grid){
       c=cell;
       p=panel;
-      m=menu;
       g=grid;
     } 
     public void mouseClicked(MouseEvent e){    	
-        if(e.getButton()==MouseEvent.BUTTON1 && !c.getRevealState()){
+        if(e.getButton()==MouseEvent.BUTTON1 && !c.getRevealState() && c.getFlag()!=1){
             c.setRevealed(false);
             if(c.isMined()){
-    			p.setEnd(false);     //false = defeat
-    			p.repaint();
-    			m.setEnd(false);
-    			m.repaint();
-                c.setRevealed(true); //this particular cell  exploded
+    			g.setEnd(false);
+                c.setRevealed(true); //exploded=true
+                g.setDefeat();
             }
             c.repaint(); 
         }
-            else if(e.getButton()==MouseEvent.BUTTON3 && !c.getRevealState()){
-    		int f = c.getFlag();
-    		if(f==2){
-    			f++;
-                c.setFlag(0);  			
-    		}
-    		else{
-    		    f++;
-    		    c.setFlag(f);
+        else if(e.getButton()==MouseEvent.BUTTON3 && !c.getRevealState()){
+            int f = c.getFlag();
+    		if(f==0){
+                if(g.getFlagCount()<g.getMines()){
+                    f++;
+                    g.incFlagCount();
+                }
+                else{
+                    f=2;
+                    c.setFlag(2);
+                }
+            }   
+            else if(f==2){
+                f=0;
             }
-            if(f==1){
-                g.incFlagCount();  
-            }
-            if(f==2){
+            else if(f==1){
+                f++;
                 g.decFlagCount();  
             }
+            c.setFlag(f);
             c.repaint();
+            g.updateLabel(); 
     	}
-        g.updateLabel();
     }
 	public void mouseEntered(MouseEvent e){       
 	}
