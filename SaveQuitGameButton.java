@@ -19,7 +19,6 @@ public class SaveQuitGameButton implements ActionListener{
 			f.writeInt(g.getY());
 			f.writeInt(g.getMines());			
 			for(int i=0;i<cells.length;i++){
-				System.out.println("i: "+i);
 				f.writeInt(i);
 				f.writeBoolean(cells[i].getRevealState());
 				f.writeBoolean(cells[i].isMined());

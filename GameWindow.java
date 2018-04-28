@@ -17,6 +17,9 @@ public class GameWindow extends JFrame{
     private int Y;
     private int mines;
     private JLabel count;
+    public static void main(String[] args){
+        GameWindow window=new GameWindow(1000,1000,0,0);
+    } 
     public GameWindow(int w, int h, int x, int y){
 		this.setTitle("(Play with) Minerves");
 		this.setPreferredSize(new Dimension(w,h));
@@ -40,7 +43,6 @@ public class GameWindow extends JFrame{
             rg.addActionListener(rgl);
             menu.add(rg);    
         }catch(FileNotFoundException fnfe){
-            System.err.println("File not found");
         }
         JButton ng = new JButton ("New Game ");
         NewGameButton ngl = new NewGameButton(this);
@@ -85,6 +87,10 @@ public class GameWindow extends JFrame{
         PlayGameButton pgl = new PlayGameButton(this);
         pg.addActionListener(pgl);
         
+        JButton qg = new JButton("Quit");
+        QuitGameButton qgl = new QuitGameButton(this,grid);
+        qg.addActionListener(qgl);
+        
         menu.add(lwidth);        
         menu.add(mW);    
         menu.add(pW);    
@@ -95,6 +101,7 @@ public class GameWindow extends JFrame{
         menu.add(mM);    
         menu.add(pM);    
         menu.add(pg);    
+        menu.add(qg);    
         
         this.add(menu,BorderLayout.CENTER);
         this.pack();
