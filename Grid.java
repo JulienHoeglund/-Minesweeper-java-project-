@@ -9,6 +9,7 @@ import java.util.Random;
 import java.lang.Exception.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 
 public class Grid{
 	private Cell[] cells;
@@ -32,10 +33,25 @@ public class Grid{
 		cellsLeft=cells.length-mines;
 		gameState=0;
 	}
+	public void loadCell(int id,boolean revealState, boolean mined, int neighbors,int flag, boolean r, boolean dec){
+		Cell c=new Cell(this,id);
+		if(mined)
+			c.setMined();
+		if(revealState)
+			c.setRevealed(false);
+		c.setFlag(flag);
+		c.setNeighbors(neighbors);
+		c.setR();
+		c.setDec();
+		
+		cells[id]=c;
+	}
 	public void setMenu(MenuPanel menu){
 		m=menu;
 	}
 	public void setEnd(Boolean b){
+		File fl = new File("save.mns");
+		fl.delete();
 		m.setEnd(b);
 		m.repaint();
 		if(!b)
@@ -44,6 +60,15 @@ public class Grid{
 	public Cell getCell(int index){
 		return cells[index];
 	}
+	public Cell[] getCells(){
+		return cells;
+	}
+	public int getX(){
+		return X;
+	}
+	public int getY(){
+		return Y;
+	}
 	public void revealAll(){
 		for (int i=0;i<cells.length;i++){
 			if(!cells[i].getRevealState()){
@@ -51,9 +76,6 @@ public class Grid{
 				cells[i].repaint();
 			}
 		}	
-	}
-	public void save(){
-		
 	}
 	public void generate(){
 		for (int i=0;i<cells.length;i++)

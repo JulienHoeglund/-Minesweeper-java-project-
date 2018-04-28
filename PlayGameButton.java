@@ -7,6 +7,6 @@ public class PlayGameButton implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
-		w.runGame();
+		w.runGame(false);
 	}
 }

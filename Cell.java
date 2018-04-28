@@ -9,20 +9,18 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Cell extends JButton{
+	private int id;
 	private boolean revealed;
 	private boolean mined;
 	private boolean exploded;
 	private int neighbors;
-	private Graphics gs;
-	private boolean defeat;
-	private Grid g;
-	private int id;
 	private int f; // flag : 0 null, 1 certain, 2 doubt
-	private Image q;
-	private Image s;
 	private boolean dec;
 	private boolean r;
-	private MenuPanel m;
+	private Grid g;
+	private boolean defeat;
+	private Image q;
+	private Image s;
 	public Cell(Grid gd, int i){
 		super();
 		revealed=false;
@@ -41,10 +39,10 @@ public class Cell extends JButton{
 	public void drawFlag(Graphics g2){
 		switch(f){
 			case 1: //g2.drawImage(star,30,30,this);
-					g2.drawString("*",30,30);
+					g2.drawString("*",this.getWidth()/2,this.getHeight()/2);
 				break;	
 			case 2: //g2.drawImage(qmark,30,30,this);
-					g2.drawString("?",30,30);
+					g2.drawString("?",this.getWidth()/2,this.getHeight()/2);
 				break;	
 		}
 	}
@@ -54,7 +52,7 @@ public class Cell extends JButton{
 			g2.setColor(Color.GRAY);
 			g2.fillRect(0,0,this.getWidth(),this.getHeight());
 		}
-		Font font = new Font("TimesRoman", Font.PLAIN, 30);
+		Font font = new Font("", Font.PLAIN, 30);
 		g2.setColor(Color.WHITE);
 		g2.setFont(font); 		
 		if(!revealed){
@@ -68,14 +66,16 @@ public class Cell extends JButton{
                 g.decFlagCount();
         		g.updateLabel();
             }
-            if(!mined && !r){
-                r=true;
-                g.decCellsLeft();
-                if(g.getCellsLeft()==0 && g.getGameState()!=2)
-                    g.setEnd(true);
+            if(!mined){
+                if(!r){
+                	r=true;
+                	g.decCellsLeft();
+                	if(g.getCellsLeft()==0 && g.getGameState()!=2)
+                    	g.setEnd(true);
+                }
                 if(f==1 && g.getGameState()!=0){	
 					g2.setColor(Color.RED);
-					g2.drawString("...",30,30);
+					g2.drawString("...",this.getWidth()/2,(this.getHeight()/2)+20);
 				}
             }
 			if(neighbors!=0){
@@ -100,14 +100,15 @@ public class Cell extends JButton{
 				}
 				if(f==0){
 					g2.setColor(Color.RED);
-					g2.drawString("!",30,30);
+					g2.drawString("!",this.getWidth()/2,this.getHeight()/2);
 				}
 			}
 		}
 	}
-	public void setGraphics(Graphics graphics){
-		gs=graphics;
-	}public boolean isMined(){
+	public void setMined(){
+		mined=true;
+	}
+	public boolean isMined(){
 		return mined;
 	}
 	public void setRevealed(boolean x){
@@ -121,9 +122,6 @@ public class Cell extends JButton{
 	public boolean getRevealState(){
 		return revealed; 
 	}
-	public void setMined(){
-		mined=true;
-	}
 	public int getNeighbors(){
 		return neighbors;
 	}
@@ -132,5 +130,17 @@ public class Cell extends JButton{
 	}
 	public void setFlag(int flag){
 		f=flag;
+	}
+	public void setR(){
+		r=true;
+	}
+	public void setDec(){
+		dec=true;
+	}
+	public boolean getR(){
+		return r;
+	}
+	public boolean getDec(){
+		return dec;
 	}
 }

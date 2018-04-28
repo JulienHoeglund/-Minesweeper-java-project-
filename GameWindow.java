@@ -7,6 +7,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 
 public class GameWindow extends JFrame{
 	private int height,width,xPos,yPos;
@@ -15,6 +16,7 @@ public class GameWindow extends JFrame{
     private int X;
     private int Y;
     private int mines;
+    private JLabel count;
     public GameWindow(int w, int h, int x, int y){
 		this.setTitle("(Play with) Minerves");
 		this.setPreferredSize(new Dimension(w,h));
@@ -29,14 +31,24 @@ public class GameWindow extends JFrame{
     }
     public void menu(){
         JPanel menu = new JPanel();
-        JButton rg = new JButton("Resume");
+        count = new JLabel(" Mines: " +Integer.toString(mines));
+        try{
+            FileInputStream file = new FileInputStream("save.mns");
+            DataInputStream flux = new DataInputStream(file);  
+            ResumeGameButton rgl= new ResumeGameButton(this,grid,flux);
+            JButton rg = new JButton("Resume");
+            rg.addActionListener(rgl);
+            menu.add(rg);    
+        }catch(FileNotFoundException fnfe){
+            System.err.println("File not found");
+        }
         JButton ng = new JButton ("New Game ");
         NewGameButton ngl = new NewGameButton(this);
         ng.addActionListener(ngl);
         JButton qg = new JButton("Quit");
         QuitGameButton qgl = new QuitGameButton(this,grid);
         qg.addActionListener(qgl);
-        menu.add(rg);    
+        
         menu.add(ng);    
         menu.add(qg);    
         this.add(menu,BorderLayout.CENTER);
@@ -87,19 +99,19 @@ public class GameWindow extends JFrame{
         this.add(menu,BorderLayout.CENTER);
         this.pack();
     }
-	public void runGame(){	
+	public void runGame(boolean resumed){	
     	getContentPane().removeAll();
 		getContentPane().repaint();
     	this.setLayout(new BorderLayout());
     	
-        JLabel count = new JLabel(" Mines: " +Integer.toString(mines));
-        
-        grid=new Grid(X,Y,mines,count);
-        
+        count = new JLabel(" Mines: " +Integer.toString(mines));
+        if(!resumed){
+            grid=new Grid(X,Y,mines,count);
+            grid.generate();
+        }
         MinePanel board = new MinePanel(new GridLayout(X,Y),grid); 
         MenuPanel menu = new MenuPanel(new GridLayout(0,1),grid);
     	grid.setMenu(menu);
-        grid.generate();
         
         for(int i=0;i<X*Y;i++){
     		Cell c = grid.getCell(i);
@@ -112,13 +124,13 @@ public class GameWindow extends JFrame{
     	NewGameButton ngl = new NewGameButton(this);
     	ng.addActionListener(ngl);
     	
-        JButton qg = new JButton("Save and quit  ");
-        QuitGameButton qgl = new QuitGameButton(this,grid);
-        qg.addActionListener(qgl);
+        JButton sqg = new JButton("Save and quit  ");
+        SaveQuitGameButton sqgl = new SaveQuitGameButton(this,grid);
+        sqg.addActionListener(sqgl);
         
         menu.add(count);
         menu.add(ng);
-    	menu.add(qg);
+    	menu.add(sqg);
 
         this.add(board,BorderLayout.CENTER);
     	this.add(menu,BorderLayout.EAST);
@@ -144,5 +156,11 @@ public class GameWindow extends JFrame{
     }
     public void setMines(int m){
         mines=m;
+    }
+    public JLabel getCount(){
+        return count;
     }    
+    public void setGrid(Grid g){
+        grid=g;
+    }
 }

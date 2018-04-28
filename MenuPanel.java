@@ -20,7 +20,7 @@ public class MenuPanel extends JPanel{
 	@Override
 	public void paintComponent(Graphics g){
 		Graphics g2 = g.create();
-		Font font = new Font("TimesRoman", Font.PLAIN, 20);
+		Font font = new Font("", Font.PLAIN, 20);
 		g2.setFont(font); 		
 		if(this.isOpaque()){	
 			g2.setColor(this.getBackground());
