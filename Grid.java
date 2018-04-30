@@ -82,8 +82,11 @@ public class Grid{
 			cells[i]=new Cell(this,i);
 		//Mine generation
 		Random rand=new Random();
+		int x;
 		for (int i=0;i<mines;i++){
-			int x=rand.nextInt(cells.length);
+			do{
+				x=rand.nextInt(cells.length);
+			}while(cells[x].isMined());
 			cells[x].setMined();
 		}
 		//Number of neighbor mines 
