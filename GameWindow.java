@@ -2,7 +2,7 @@
 * The GameWindow class draws and updates the game window 
 *
 * @version 0.1
-* @author Julien Hoeglund, Valentin Lefebure
+* @author Julien Hoeglund
 */
 import javax.swing.*;
 import java.awt.*;

@@ -1,3 +1,9 @@
+/**
+* The ResumeGameButton class reads the state of the last game from a file and loads it
+*
+* @version 0.1
+* @author Julien Hoeglund
+*/
 import java.awt.event.*;
 import java.io.*;
 public class ResumeGameButton implements ActionListener{
@@ -16,10 +22,10 @@ public class ResumeGameButton implements ActionListener{
 		boolean revealState;
 		boolean mined;
 		int neighbors;
+		boolean exploded; 
 		int flag;
 		boolean r;
 		boolean dec;
-
 		try{
 			int X=f.readInt();
 			int Y=f.readInt();
@@ -29,11 +35,12 @@ public class ResumeGameButton implements ActionListener{
 				id=f.readInt();
 				revealState=f.readBoolean();
 				mined=f.readBoolean();
+				exploded = f.readBoolean();
 				neighbors=f.readInt();
 				flag=f.readInt();
 				r=f.readBoolean();
 				dec=f.readBoolean();
-				g.loadCell(id,revealState,mined,neighbors,flag,r,dec);
+				g.loadCell(id,revealState,mined,exploded,neighbors,flag,r,dec);
 			}
 			f.close();
 		}catch(IOException ex){

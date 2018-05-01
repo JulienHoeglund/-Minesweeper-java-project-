@@ -2,7 +2,7 @@
 * The CellListener class receives and processes mouse inputs 
 *
 * @version 0.1
-* @author Julien Hoeglund, Valentin Lefebure
+* @author Julien Hoeglund
 */
 import java.awt.event.*;
 import javax.swing.*;

@@ -2,7 +2,7 @@
 * MinePanel is a class used to manage the different game views  
 *
 * @version 0.1
-* @author Julien Hoeglund, Valentin Lefebure
+* @author Julien Hoeglund
 */
 import javax.swing.*;
 import java.awt.*;

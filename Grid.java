@@ -2,7 +2,7 @@
 * The Grid class draws and updates the game grid holding cells
 *
 * @version 0.1
-* @author Julien Hoeglund, Valentin Lefebure
+* @author Julien Hoeglund
 */
 
 import java.util.Random;
@@ -33,10 +33,12 @@ public class Grid{
 		cellsLeft=cells.length-mines;
 		gameState=0;
 	}
-	public void loadCell(int id,boolean revealState, boolean mined, int neighbors,int flag, boolean r, boolean dec){
+	public void loadCell(int id,boolean revealState, boolean mined, boolean exploded, int neighbors,int flag, boolean r, boolean dec){
 		Cell c=new Cell(this,id);
 		if(mined)
 			c.setMined();
+		if(exploded)
+			c.setExploded();
 		if(revealState)
 			c.setRevealed(false);
 		c.setFlag(flag);

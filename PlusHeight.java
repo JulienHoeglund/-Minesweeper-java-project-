@@ -1,3 +1,9 @@
+/**
+* PlusHeight is a button which increments the number of cell rows of the incoming game   
+*
+* @version 0.1
+* @author Julien Hoeglund
+*/
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;

@@ -1,9 +1,9 @@
-	/**
+/**
 * The Cell class holds information about a g cell : location, whether it 
 * has a mine or the number of mines around it, its display state, etc  
 *
 * @version 0.1
-* @author Julien Hoeglund, Valentin Lefebure
+* @author Julien Hoeglund
 */
 import javax.swing.*;
 import java.awt.*;
@@ -19,8 +19,6 @@ public class Cell extends JButton{
 	private boolean r;
 	private Grid g;
 	private boolean defeat;
-	private Image q;
-	private Image s;
 	public Cell(Grid gd, int i){
 		super();
 		revealed=false;
@@ -31,18 +29,16 @@ public class Cell extends JButton{
 		g=gd;
 		id=i;
 		f=0;
-		q = Toolkit.getDefaultToolkit().getImage("img/questionmark.png");
-		s = Toolkit.getDefaultToolkit().getImage("img/star.png");
 		dec=false;
 		r=false;
 	}
 	public void drawFlag(Graphics g2){
 		switch(f){
-			case 1: //g2.drawImage(star,30,30,this);
-					g2.drawString("*",this.getWidth()/2,this.getHeight()/2);
+			case 1: 
+				g2.drawString("*",this.getWidth()/2,this.getHeight()/2);
 				break;	
-			case 2: //g2.drawImage(qmark,30,30,this);
-					g2.drawString("?",this.getWidth()/2,this.getHeight()/2);
+			case 2: 
+				g2.drawString("?",this.getWidth()/2,this.getHeight()/2);
 				break;	
 		}
 	}
@@ -110,6 +106,12 @@ public class Cell extends JButton{
 	}
 	public boolean isMined(){
 		return mined;
+	}
+	public boolean getExploded(){
+		return exploded;
+	}
+	public void setExploded(){
+		exploded=true;
 	}
 	public void setRevealed(boolean x){
 		revealed=true;

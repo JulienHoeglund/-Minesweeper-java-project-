@@ -2,7 +2,7 @@
 * MinePanel is a class used to manage the different game views  
 *
 * @version 0.1
-* @author Julien Hoeglund, Valentin Lefebure
+* @author Julien Hoeglund
 */
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +11,7 @@ public class MenuPanel extends JPanel{
 	private boolean end;
 	private boolean victory;
 	private Grid grid;
+	private Image s;
 	public MenuPanel(GridLayout layout, Grid g){
 		super(layout);
 		grid=g;

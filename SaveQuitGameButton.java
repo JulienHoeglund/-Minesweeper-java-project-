@@ -1,3 +1,9 @@
+/**
+* The SaveQuitGameButton class writes the state of the current game to a file
+*
+* @version 0.1
+* @author Julien Hoeglund
+*/
 import java.awt.event.*;
 import java.io.*;
 public class SaveQuitGameButton implements ActionListener{
@@ -22,6 +28,7 @@ public class SaveQuitGameButton implements ActionListener{
 				f.writeInt(i);
 				f.writeBoolean(cells[i].getRevealState());
 				f.writeBoolean(cells[i].isMined());
+				f.writeBoolean(cells[i].getExploded());
 				f.writeInt(cells[i].getNeighbors());
 				f.writeInt(cells[i].getFlag());
 				f.writeBoolean(cells[i].getR());

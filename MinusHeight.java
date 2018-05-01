@@ -1,3 +1,9 @@
+/**
+* MinusHeight is a button which decrements the number of cell rows   
+*
+* @version 0.1
+* @author Julien Hoeglund
+*/
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
