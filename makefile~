@@ -11,17 +11,17 @@ CLASSES= \
 		CellListener.java \
 		Grid.java \
 		MenuPanel.java \
-		GameButton.java \
+		MinePanel.java \
 		MinusHeight.java \
 		MinusMine.java \
 		MinusWidth.java \
-		PlayGame.java \
+		PlayGameButton.java \
 		PlusHeight.java \
 		PlusMine.java \
 		PlusWidth.java \
-		QuitGame.java \
-		ResumeGame.java \
-		SaveQuitGame.java
+		QuitGameButton.java \
+		ResumeGameButton.java \
+		SaveQuitGameButton.java
 
 default: classes  
 

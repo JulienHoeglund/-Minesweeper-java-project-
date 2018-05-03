@@ -11,7 +11,11 @@ CLASSES= \
 		CellListener.java \
 		Grid.java \
 		MenuPanel.java \
+<<<<<<< HEAD
+		MinePanel.java \
 		GameButton.java \
+=======
+>>>>>>> a067f7a0c3f186cbc0e053b5494e02a46a5a472c
 		MinusHeight.java \
 		MinusMine.java \
 		MinusWidth.java \

@@ -116,7 +116,7 @@ public class GameWindow extends JFrame{
             grid=new Grid(X,Y,mines,count);
             grid.generate();
         }
-        MinePanel board = new MinePanel(new GridLayout(X,Y),grid); 
+        JPanel board = new JPanel(new GridLayout(X,Y)); 
         MenuPanel menu = new MenuPanel(new GridLayout(0,1),grid);
     	grid.setMenu(menu);
         
