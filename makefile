@@ -12,16 +12,17 @@ CLASSES= \
 		Grid.java \
 		MenuPanel.java \
 		MinePanel.java \
+		GameButton.java \
 		MinusHeight.java \
 		MinusMine.java \
 		MinusWidth.java \
-		PlayGameButton.java \
+		PlayGame.java \
 		PlusHeight.java \
 		PlusMine.java \
 		PlusWidth.java \
-		QuitGameButton.java \
-		ResumeGameButton.java \
-		SaveQuitGameButton.java
+		QuitGame.java \
+		ResumeGame.java \
+		SaveQuitGame.java
 
 default: classes  
 

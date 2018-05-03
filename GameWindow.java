@@ -38,17 +38,17 @@ public class GameWindow extends JFrame{
         try{
             FileInputStream file = new FileInputStream("save.mns");
             DataInputStream flux = new DataInputStream(file);  
-            ResumeGameButton rgl= new ResumeGameButton(this,grid,flux);
-            JButton rg = new JButton("Resume");
+            ResumeGame rgl= new ResumeGame(this,grid,flux);
+            GameButton rg = new GameButton("Resume");
             rg.addActionListener(rgl);
             menu.add(rg);    
         }catch(FileNotFoundException fnfe){
         }
-        JButton ng = new JButton ("New Game ");
-        NewGameButton ngl = new NewGameButton(this);
+        GameButton ng = new GameButton ("New Game ");
+        NewGame ngl = new NewGame(this);
         ng.addActionListener(ngl);
-        JButton qg = new JButton("Quit");
-        QuitGameButton qgl = new QuitGameButton(this,grid);
+        GameButton qg = new GameButton("Quit");
+        QuitGame qgl = new QuitGame(this,grid);
         qg.addActionListener(qgl);
         
         menu.add(ng);    
@@ -63,32 +63,32 @@ public class GameWindow extends JFrame{
         JPanel menu = new JPanel();
         
         JLabel lwidth = new JLabel("Width: "+X); 
-        JButton mW = new JButton("-");
+        GameButton mW = new GameButton("-");
         mW.addActionListener(new MinusWidth(this,lwidth));
-        JButton pW = new JButton("+");
+        GameButton pW = new GameButton("+");
         pW.addActionListener(new PlusWidth(this,lwidth));
                 
         JLabel lheight = new JLabel("Height: "+Y); 
-        JButton mH = new JButton("-");
+        GameButton mH = new GameButton("-");
         mH.addActionListener(new MinusHeight(this,lheight));
-        JButton pH = new JButton("+");
+        GameButton pH = new GameButton("+");
         pH.addActionListener(new PlusHeight(this,lheight));
 
         
         JLabel lmines = new JLabel("Mines: "+mines);
-        JButton mM = new JButton("-");
+        GameButton mM = new GameButton("-");
         mM.addActionListener(new MinusMine(this,lmines));
         
-        JButton pM = new JButton("+");
+        GameButton pM = new GameButton("+");
         pM.addActionListener(new PlusMine(this,lmines));
 
-        JButton pg = new JButton ("Play Game ");
+        GameButton pg = new GameButton ("Play Game ");
         
-        PlayGameButton pgl = new PlayGameButton(this);
+        PlayGame pgl = new PlayGame(this);
         pg.addActionListener(pgl);
         
-        JButton qg = new JButton("Quit");
-        QuitGameButton qgl = new QuitGameButton(this,grid);
+        GameButton qg = new GameButton("Quit");
+        QuitGame qgl = new QuitGame(this,grid);
         qg.addActionListener(qgl);
         
         menu.add(lwidth);        
@@ -127,12 +127,12 @@ public class GameWindow extends JFrame{
     		board.add(c);			
     	}
 
-    	JButton ng = new JButton ("New Game ");
-    	NewGameButton ngl = new NewGameButton(this);
+    	GameButton ng = new GameButton ("New Game ");
+    	NewGame ngl = new NewGame(this);
     	ng.addActionListener(ngl);
     	
-        JButton sqg = new JButton("Save and quit  ");
-        SaveQuitGameButton sqgl = new SaveQuitGameButton(this,grid);
+        GameButton sqg = new GameButton("Save and quit  ");
+        SaveQuitGame sqgl = new SaveQuitGame(this,grid);
         sqg.addActionListener(sqgl);
         
         menu.add(count);

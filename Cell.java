@@ -8,7 +8,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Cell extends JButton{
+public class Cell extends GameButton{
 	private int id;
 	private boolean revealed;
 	private boolean mined;
@@ -49,7 +49,7 @@ public class Cell extends JButton{
 			g2.fillRect(0,0,this.getWidth(),this.getHeight());
 		}
 		Font font = new Font("", Font.PLAIN, 30);
-		g2.setColor(Color.WHITE);
+		g2.setColor(Color.GRAY);
 		g2.setFont(font); 		
 		if(!revealed){
 			drawFlag(g2);	
@@ -70,7 +70,7 @@ public class Cell extends JButton{
                     	g.setEnd(true);
                 }
                 if(f==1 && g.getGameState()!=0){	
-					g2.setColor(Color.RED);
+					g2.setColor(Color.DARK_GRAY);
 					g2.drawString("...",this.getWidth()/2,(this.getHeight()/2)+20);
 				}
             }
