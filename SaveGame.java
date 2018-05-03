@@ -6,10 +6,10 @@
 */
 import java.awt.event.*;
 import java.io.*;
-public class SaveQuitGameButton implements ActionListener{
+public class SaveGame implements ActionListener{
 	private GameWindow w;
 	private Grid g;
-	public SaveQuitGameButton(GameWindow window,Grid grid){
+	public SaveGame(GameWindow window,Grid grid){
 		w=window;
 		g=grid;
 	}
@@ -38,6 +38,5 @@ public class SaveQuitGameButton implements ActionListener{
 		}catch(IOException ioe){
 			System.err.println("Error: could not save");
 		}
-		w.dispose();
 	}
 }

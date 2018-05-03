@@ -17,7 +17,6 @@ public class ResumeGame implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
-		//LOAD
 		int X,Y;
 		int id;
 		boolean revealState;

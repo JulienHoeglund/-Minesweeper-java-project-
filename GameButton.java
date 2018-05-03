@@ -9,13 +9,21 @@ import java.awt.*;
 
 public class GameButton extends JButton{
 	public GameButton(){
-		super();
+		this.setFocusable(false);
 		this.setFocusPainted(false);
 		this.setContentAreaFilled(false);
 	}public GameButton(String s){
 		super(s);
+		this.setFocusable(false);
 		this.setFocusPainted(false);
 		this.setContentAreaFilled(false);
+	}
+	public GameButton(String s, int x){
+		super(s);
+		this.setFocusable(false);
+		this.setFocusPainted(false);
+		this.setContentAreaFilled(false);
+		this.setForeground(Color.WHITE);
 	}
 	
 }

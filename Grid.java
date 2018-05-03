@@ -62,8 +62,6 @@ public class Grid{
 		}else{
 			gameState=1;
 		}
-		System.out.println(getGameState());
-
 	}
 	public Cell getCell(int index){
 		return cells[index];

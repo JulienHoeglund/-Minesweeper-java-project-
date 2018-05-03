@@ -55,7 +55,7 @@ public class Cell extends GameButton{
 			drawFlag(g2);	
 		}
 		if(revealed){
-			g2.setColor(Color.WHITE);
+			g2.setColor(Color.DARK_GRAY);
 			g2.fillRect(0,0,this.getWidth(),this.getHeight());
 			if(getFlag()==1 && !dec){
                 dec=true;
@@ -76,7 +76,7 @@ public class Cell extends GameButton{
             }
 			if(neighbors!=0){
 				String s = Integer.toString(neighbors);
-				g2.setColor(Color.BLACK);
+				g2.setColor(Color.WHITE);
 				FontMetrics m = g2.getFontMetrics(font);
 				int x = (this.getWidth() - m.stringWidth(s))/2;
 				int y = ((this.getHeight() - m.getHeight())/2)+15;
@@ -93,9 +93,8 @@ public class Cell extends GameButton{
 					g2.setColor(Color.RED);
 					g2.fillRect(0,0,this.getWidth(),this.getHeight());
 				    g.setEnd(false);     //false=defeat
-				}
-				if(f==0){
-					g2.setColor(Color.RED);
+				}else if(f==0){
+					g2.setColor(Color.WHITE);
 					g2.drawString("!",this.getWidth()/2,this.getHeight()/2);
 				}
 			}

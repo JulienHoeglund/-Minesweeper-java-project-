@@ -21,7 +21,8 @@ CLASSES= \
 		PlusWidth.java \
 		QuitGame.java \
 		ResumeGame.java \
-		SaveQuitGame.java
+		SaveGame.java \
+		QuitGame.java 
 
 default: classes  
 
