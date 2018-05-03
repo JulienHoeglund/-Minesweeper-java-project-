@@ -11,6 +11,7 @@ CLASSES= \
 		CellListener.java \
 		Grid.java \
 		MenuPanel.java \
+		MinePanel.java \
 		MinusHeight.java \
 		MinusMine.java \
 		MinusWidth.java \

@@ -56,8 +56,14 @@ public class Grid{
 		fl.delete();
 		m.setEnd(b);
 		m.repaint();
-		if(!b)
+		if(!b){
 			revealAll();
+			gameState=2;
+		}else{
+			gameState=1;
+		}
+		System.out.println(getGameState());
+
 	}
 	public Cell getCell(int index){
 		return cells[index];
