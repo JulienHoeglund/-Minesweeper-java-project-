@@ -77,7 +77,7 @@ public class Grid{
 	}
 	public void revealAll(){
 		for (int i=0;i<cells.length;i++){
-			if(!cells[i].getRevealState()){
+			if(!cells[i].getRevealState() && cells[i].isMined()){
 				cells[i].setRevealed(false);
 				cells[i].repaint();
 			}

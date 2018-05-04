@@ -6,13 +6,15 @@
 */
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.*;
 
 public class GameButton extends JButton{
 	public GameButton(){
 		this.setFocusable(false);
 		this.setFocusPainted(false);
 		this.setContentAreaFilled(false);
-	}public GameButton(String s){
+	}
+	public GameButton(String s){
 		super(s);
 		this.setFocusable(false);
 		this.setFocusPainted(false);

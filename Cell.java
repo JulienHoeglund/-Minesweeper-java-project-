@@ -7,6 +7,10 @@
 */
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.*;
+import java.io.*;
+import java.net.*;
+import javax.imageio.*;
 
 public class Cell extends GameButton{
 	private int id;
@@ -19,6 +23,9 @@ public class Cell extends GameButton{
 	private boolean r;
 	private Grid g;
 	private boolean defeat;
+	private BufferedImage img;
+	private BufferedImage explosion;
+	
 	public Cell(Grid gd, int i){
 		super();
 		revealed=false;
@@ -35,12 +42,22 @@ public class Cell extends GameButton{
 	public void drawFlag(Graphics g2){
 		switch(f){
 			case 1: 
-				g2.drawString("*",this.getWidth()/2,this.getHeight()/2);
+				g2.drawString("*",(this.getWidth()/2)-5,(this.getHeight()/2)+5);
 				break;	
 			case 2: 
-				g2.drawString("?",this.getWidth()/2,this.getHeight()/2);
+				g2.drawString("?",(this.getWidth()/2)-5,(this.getHeight()/2)-5);
 				break;	
 		}
+	}
+	private BufferedImage loadImage(){
+		URL imagePath = getClass().getResource("mine.png");
+		BufferedImage result = null;
+		try {
+			result = ImageIO.read(imagePath);
+		} catch (IOException e) {
+			System.err.println("Error");
+		}
+		return result;
 	}
 	public void paintComponent(Graphics g1){
 		Graphics g2 = g1.create();
@@ -86,16 +103,23 @@ public class Cell extends GameButton{
 				g.revealNeighbors(id);
 			}
 			if(mined){
+				img=loadImage();
 				g2.setColor(Color.BLACK);
 				g2.fillRect(0,0,this.getWidth(),this.getHeight());
 				drawFlag(g2);
 				if(exploded){
 					g2.setColor(Color.RED);
 					g2.fillRect(0,0,this.getWidth(),this.getHeight());
-				    g.setEnd(false);     //false=defeat
-				}else if(f==0){
+					g2.drawImage(img,0,0,getWidth(),getWidth(),null);
+					g.setEnd(false);     //false=defeat
+					System.out.println(id);
+				}else if(f==1){
+					g2.setColor(Color.GREEN);
+					g2.drawImage(img,0,0,getWidth(),getHeight(),null);
 					g2.setColor(Color.WHITE);
-					g2.drawString("!",this.getWidth()/2,this.getHeight()/2);
+				}
+				else{
+					g2.drawImage(img,0,0,getWidth(),getHeight(),null);
 				}
 			}
 		}

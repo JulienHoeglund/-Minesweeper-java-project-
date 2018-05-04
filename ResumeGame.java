@@ -1,5 +1,5 @@
 /**
-* The ResumeGameButton class reads the state of the last game from a file and loads it
+* The ResumeGame class reads the state of the last game from a file and loads it
 *
 * @version 0.1
 * @author Julien Hoeglund

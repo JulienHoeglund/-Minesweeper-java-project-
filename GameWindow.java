@@ -4,10 +4,10 @@
 * @version 0.1
 * @author Julien Hoeglund
 */
+import java.io.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
 
 public class GameWindow extends JFrame{
 	private int height,width,xPos,yPos;
@@ -34,9 +34,9 @@ public class GameWindow extends JFrame{
         title.setMaximumSize(new Dimension(100,100));
         title.setFont(new Font("",Font.PLAIN,20));
     	menu();
-        X=4;
-        Y=4;
-        mines=1;
+        X=5;
+        Y=5;
+        mines=10;
      }
     public void configButton(GameButton b){
     	b.setAlignmentX(JComponent.CENTER_ALIGNMENT);
