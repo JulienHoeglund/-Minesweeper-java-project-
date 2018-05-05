@@ -179,16 +179,13 @@ public class GameWindow extends JFrame{
             grid.generate();
         }
         JPanel board = new JPanel(new GridLayout(X,Y)); 
-        board.setMaximumSize(new Dimension(500,500));
-        board.setMinimumSize(new Dimension(500,500));
-        board.setPreferredSize(new Dimension(500,500));
+        board.setPreferredSize(new Dimension(750,750));
         board.setAlignmentX(JComponent.RIGHT_ALIGNMENT);
         board.setAlignmentY(JComponent.CENTER_ALIGNMENT);
         MenuPanel menu = new MenuPanel(grid);
         menu.setAlignmentX(JComponent.LEFT_ALIGNMENT);
         menu.setAlignmentY(JComponent.CENTER_ALIGNMENT);
-        menu.setMaximumSize(new Dimension(100,650));
-        menu.setMinimumSize(new Dimension(100,650));
+        menu.setPreferredSize(new Dimension(110,650));
         grid.setMenu(menu);
         
         for(int i=0;i<X*Y;i++){
@@ -225,7 +222,7 @@ public class GameWindow extends JFrame{
         mg.addActionListener(mgl);
         
         ng.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-    	ng.setMaximumSize(new Dimension(300,40)); 
+    	ng.setMaximumSize(new Dimension(400,80)); 
         
         sg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
     	sg.setMaximumSize(new Dimension(300,40)); 
