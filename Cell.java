@@ -62,7 +62,7 @@ public class Cell extends GameButton{
 	public void paintComponent(Graphics g1){
 		Graphics g2 = g1.create();
 		if(this.isOpaque()){	
-			g2.setColor(Color.GRAY);
+			g2.setColor(new Color(0, 51, 102));
 			g2.fillRect(0,0,this.getWidth(),this.getHeight());
 		}
 		Font font = new Font("", Font.PLAIN, 30);
@@ -72,7 +72,7 @@ public class Cell extends GameButton{
 			drawFlag(g2);	
 		}
 		if(revealed){
-			g2.setColor(Color.DARK_GRAY);
+			g2.setColor(new Color(0, 77, 153));
 			g2.fillRect(0,0,this.getWidth(),this.getHeight());
 			if(getFlag()==1 && !dec){
                 dec=true;
@@ -96,7 +96,7 @@ public class Cell extends GameButton{
 				g2.setColor(Color.WHITE);
 				FontMetrics m = g2.getFontMetrics(font);
 				int x = (this.getWidth() - m.stringWidth(s))/2;
-				int y = ((this.getHeight() - m.getHeight())/2)+15;
+				int y = ((this.getHeight() - m.getHeight())/2)+20;
 				g2.drawString(s,x,y);				
 			}
 			if(!mined && neighbors==0){
@@ -112,7 +112,6 @@ public class Cell extends GameButton{
 					g2.fillRect(0,0,this.getWidth(),this.getHeight());
 					g2.drawImage(img,0,0,getWidth(),getWidth(),null);
 					g.setEnd(false);     //false=defeat
-					System.out.println(id);
 				}else if(f==1){
 					g2.setColor(Color.GREEN);
 					g2.drawImage(img,0,0,getWidth(),getHeight(),null);

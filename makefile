@@ -21,7 +21,7 @@ CLASSES= \
 		PlusWidth.java \
 		QuitGame.java \
 		ResumeGame.java \
-		SaveGame.java \
+		BackgroundPanel.java \
 		QuitGame.java 
 
 default: classes  
@@ -32,5 +32,5 @@ test:
 	$(JVM) GameWindow
 clean : 
 	$(RM) *.class
-
+	$(RM) save.mns
 

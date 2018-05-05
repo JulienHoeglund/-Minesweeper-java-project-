@@ -5,9 +5,14 @@
 * @author Julien Hoeglund
 */
 import java.io.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.*;
+import java.net.URL;
+import java.awt.image.BufferedImage;
+
 
 public class GameWindow extends JFrame{
 	private int height,width,xPos,yPos;
@@ -19,7 +24,7 @@ public class GameWindow extends JFrame{
     private JLabel count;
     private JLabel title;
     public static void main(String[] args){
-        GameWindow window=new GameWindow(1000,1000,0,0);
+        GameWindow window=new GameWindow(1116,954,0,0);
     } 
     public GameWindow(int w, int h, int x, int y){
 		String t = new String("Minerves");
@@ -31,9 +36,10 @@ public class GameWindow extends JFrame{
         end=false;
         title = new JLabel(t);
         title.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        title.setMaximumSize(new Dimension(100,100));
-        title.setFont(new Font("",Font.PLAIN,20));
-    	menu();
+        title.setMaximumSize(new Dimension(200,100));
+        title.setFont(new Font("TimesRoman",Font.PLAIN,40));
+    	title.setForeground(Color.BLACK);
+        menu();
         X=5;
         Y=5;
         mines=10;
@@ -45,10 +51,11 @@ public class GameWindow extends JFrame{
     public void menu(){
         getContentPane().removeAll();
         getContentPane().repaint();
-        
-        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-        this.add(title);
-        this.add(Box.createRigidArea(new Dimension(30,30)));
+        BackgroundPanel bp = new BackgroundPanel(this);
+        bp.setLayout(new BoxLayout(bp, BoxLayout.Y_AXIS));
+        this.add(bp);
+        bp.add(title);
+        bp.add(Box.createRigidArea(new Dimension(30,30)));
         try{
             FileInputStream file = new FileInputStream("save.mns");
             DataInputStream flux = new DataInputStream(file);  
@@ -56,8 +63,8 @@ public class GameWindow extends JFrame{
             GameButton rg = new GameButton("Resume");
             rg.addActionListener(rgl);
             configButton(rg);
-            this.add(rg);
-            this.add(Box.createRigidArea(new Dimension(30,30)));    
+            bp.add(rg);
+            bp.add(Box.createRigidArea(new Dimension(30,30)));    
         }catch(FileNotFoundException fnfe){
         }
         GameButton ng = new GameButton ("New Game ");
@@ -70,19 +77,21 @@ public class GameWindow extends JFrame{
         qg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         configButton(ng);
         configButton(qg);
-        
-        this.add(ng);
-        this.add(Box.createRigidArea(new Dimension(30,30)));    
-        this.add(qg);    
-        this.add(Box.createRigidArea(new Dimension(30,30)));
+        bp.add(ng);
+        bp.add(Box.createRigidArea(new Dimension(30,30)));    
+        bp.add(qg);    
+        bp.add(Box.createRigidArea(new Dimension(30,30)));
         this.pack();
     }
     public void config(){
         getContentPane().removeAll();
         getContentPane().repaint();
         
-        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-        this.add(title);
+        BackgroundPanel bp = new BackgroundPanel(this);
+        bp.setLayout(new BoxLayout(bp, BoxLayout.Y_AXIS));
+        this.add(bp);
+        
+        bp.add(title);
         
         JLabel lwidth = new JLabel("Width: "+X); 
         GameButton mW = new GameButton("-");
@@ -96,12 +105,14 @@ public class GameWindow extends JFrame{
         GameButton pH = new GameButton("+");
         pH.addActionListener(new PlusHeight(this,lheight));
 
-        
         JLabel lmines = new JLabel("Mines: "+mines);
         lmines.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         GameButton mM = new GameButton("-");
         mM.addActionListener(new MinusMine(this,lmines));
         
+        lwidth.setForeground(Color.WHITE);
+        lheight.setForeground(Color.WHITE);
+        lmines.setForeground(Color.WHITE);
         GameButton pM = new GameButton("+");
         pM.addActionListener(new PlusMine(this,lmines));
 
@@ -131,30 +142,34 @@ public class GameWindow extends JFrame{
         mg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         qg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
     	
-        this.add(lwidth);        
-        this.add(pW);    
-        this.add(mW);    
-        this.add(Box.createRigidArea(new Dimension(30,30)));
-        this.add(lheight);    
-        this.add(pH);
-        this.add(mH);    
-        this.add(Box.createRigidArea(new Dimension(30,30)));
-        this.add(lmines);    
-        this.add(pM);    
-        this.add(mM);    
-        this.add(Box.createRigidArea(new Dimension(30,30)));
-        this.add(pg);
-        this.add(Box.createRigidArea(new Dimension(30,30)));
-        this.add(mg);    
-        this.add(Box.createRigidArea(new Dimension(30,30)));
-        this.add(qg);    
+        bp.add(lwidth);        
+        bp.add(pW);    
+        bp.add(mW);    
+        bp.add(Box.createRigidArea(new Dimension(30,30)));
+        bp.add(lheight);    
+        bp.add(pH);
+        bp.add(mH);    
+        bp.add(Box.createRigidArea(new Dimension(30,30)));
+        bp.add(lmines);    
+        bp.add(pM);    
+        bp.add(mM);    
+        bp.add(Box.createRigidArea(new Dimension(30,30)));
+        bp.add(pg);
+        bp.add(Box.createRigidArea(new Dimension(30,30)));
+        bp.add(mg);    
+        bp.add(Box.createRigidArea(new Dimension(30,30)));
+        bp.add(qg);    
         
         this.pack();
     }
 	public void runGame(boolean resumed){	
     	getContentPane().removeAll();
 		getContentPane().repaint();
-    	this.setLayout(new BorderLayout());
+
+        BackgroundPanel bp = new BackgroundPanel(this);
+        //bp.setLayout(new BoxLayout(bp, BoxLayout.Y_AXIS));
+        this.add(bp);
+        
     	count = new JLabel(" Mines: " +Integer.toString(mines));
         count.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         count.setForeground(Color.WHITE);
@@ -164,23 +179,42 @@ public class GameWindow extends JFrame{
             grid.generate();
         }
         JPanel board = new JPanel(new GridLayout(X,Y)); 
+        board.setMaximumSize(new Dimension(500,500));
+        board.setMinimumSize(new Dimension(500,500));
+        board.setPreferredSize(new Dimension(500,500));
+        board.setAlignmentX(JComponent.RIGHT_ALIGNMENT);
+        board.setAlignmentY(JComponent.CENTER_ALIGNMENT);
         MenuPanel menu = new MenuPanel(grid);
-    	grid.setMenu(menu);
+        menu.setAlignmentX(JComponent.LEFT_ALIGNMENT);
+        menu.setAlignmentY(JComponent.CENTER_ALIGNMENT);
+        menu.setMaximumSize(new Dimension(100,650));
+        menu.setMinimumSize(new Dimension(100,650));
+        grid.setMenu(menu);
         
         for(int i=0;i<X*Y;i++){
     		Cell c = grid.getCell(i);
-    		c.setPreferredSize(new Dimension(30,30));
+            c.setMaximumSize(new Dimension(50,50));
+    		c.setMinimumSize(new Dimension(50,50));
     		c.addMouseListener(new CellListener(c,board,grid));
     		board.add(c);			
     	}
-
-    	GameButton ng = new GameButton ("New Game",1);
-    	NewGame ngl = new NewGame(this);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                save();
+            }
+        });
+        GameButton ng = new GameButton ("New Game",1);
+        NewGame ngl = new NewGame(this);
     	ng.addActionListener(ngl);
     	
         GameButton sg = new GameButton("Save",1);
-        SaveGame sgl = new SaveGame(this,grid);
-        sg.addActionListener(sgl);
+        sg.addActionListener(new ActionListener(){
+            @Override 
+            public void actionPerformed(ActionEvent e){
+                save();
+            }
+        });
         
     	GameButton qg = new GameButton("Quit",1);
         QuitGame qgl = new QuitGame(this,grid);
@@ -212,9 +246,10 @@ public class GameWindow extends JFrame{
     	menu.add(sg);
     	menu.add(Box.createRigidArea(new Dimension(30,100)));
     	menu.add(qg);
+        menu.add(Box.createRigidArea(new Dimension(30,30)));
 
-        this.add(board,BorderLayout.CENTER);
-    	this.add(menu,BorderLayout.EAST);
+        bp.add(board);
+        bp.add(menu);
     	this.pack();
     }
     public void setEnd(){
@@ -243,5 +278,30 @@ public class GameWindow extends JFrame{
     }    
     public void setGrid(Grid g){
         grid=g;
+    }
+    public void save(){
+        File fl = new File("save.mns");
+        fl.delete();
+        try{
+            FileOutputStream file = new FileOutputStream("save.mns");
+            DataOutputStream f = new DataOutputStream(file);  
+            Cell[] cells = grid.getCells();
+            f.writeInt(grid.getX());
+            f.writeInt(grid.getY());
+            f.writeInt(grid.getMines());           
+            for(int i=0;i<cells.length;i++){
+                f.writeInt(i);
+                f.writeBoolean(cells[i].getRevealState());
+                f.writeBoolean(cells[i].isMined());
+                f.writeBoolean(cells[i].getExploded());
+                f.writeInt(cells[i].getNeighbors());
+                f.writeInt(cells[i].getFlag());
+                f.writeBoolean(cells[i].getR());
+                f.writeBoolean(cells[i].getDec());
+            }
+            f.close();
+        }catch(IOException ioe){
+            System.err.println("Error: could not save");
+        }
     }
 }

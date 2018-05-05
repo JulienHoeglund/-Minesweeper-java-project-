@@ -5,7 +5,6 @@ import java.awt.*;
 public class PlusMine implements ActionListener{
 	private GameWindow w;
 	private JLabel l;
-
 	public PlusMine(GameWindow window, JLabel label){
 		l=label;
 		w=window;
