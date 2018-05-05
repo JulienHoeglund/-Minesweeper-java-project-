@@ -48,14 +48,36 @@ public class GameWindow extends JFrame{
     	b.setAlignmentX(JComponent.CENTER_ALIGNMENT);
     	b.setMaximumSize(new Dimension(300,25)); 
     }
+    public void story(){
+        getContentPane().removeAll();
+        getContentPane().repaint();
+        BackgroundPanel bp = new BackgroundPanel(this,2);
+        bp.setLayout(new BoxLayout(bp, BoxLayout.Y_AXIS));
+        bp.add(title);   
+        this.add(bp);
+        GameButton mg = new GameButton("Menu");
+        MenuGame mgl = new MenuGame(this);
+        mg.addActionListener(mgl);
+        mg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        configButton(mg);        
+        bp.add(Box.createRigidArea(new Dimension(30,500)));
+        bp.add(mg);
+        this.pack();
+    }
     public void menu(){
         getContentPane().removeAll();
         getContentPane().repaint();
-        BackgroundPanel bp = new BackgroundPanel(this);
+        BackgroundPanel bp = new BackgroundPanel(this,1);
         bp.setLayout(new BoxLayout(bp, BoxLayout.Y_AXIS));
         this.add(bp);
         bp.add(title);
         bp.add(Box.createRigidArea(new Dimension(30,30)));
+        
+        GameButton ng = new GameButton("New Game");
+        NewGame ngl = new NewGame(this);
+        ng.addActionListener(ngl);
+        configButton(ng);
+        Boolean r=false;
         try{
             FileInputStream file = new FileInputStream("save.mns");
             DataInputStream flux = new DataInputStream(file);  
@@ -65,29 +87,38 @@ public class GameWindow extends JFrame{
             configButton(rg);
             bp.add(rg);
             bp.add(Box.createRigidArea(new Dimension(30,30)));    
+            bp.add(ng);
+            bp.add(Box.createRigidArea(new Dimension(30,30)));    
+            r=true;
         }catch(FileNotFoundException fnfe){
         }
-        GameButton ng = new GameButton ("New Game ");
-        NewGame ngl = new NewGame(this);
-        ng.addActionListener(ngl);
+        
+        GameButton story = new GameButton("Story");
+        story.setForeground(Color.WHITE);
+        story.addActionListener(new StoryListener(this));
         GameButton qg = new GameButton("Quit");
         QuitGame qgl = new QuitGame(this,grid);
         qg.addActionListener(qgl);
-        ng.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        qg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        configButton(ng);
+        
+        configButton(story);
         configButton(qg);
-        bp.add(ng);
+        
+        bp.add(story);
+        if(!r){
+            bp.add(Box.createRigidArea(new Dimension(30,30)));    
+            bp.add(ng);
+        }
         bp.add(Box.createRigidArea(new Dimension(30,30)));    
         bp.add(qg);    
         bp.add(Box.createRigidArea(new Dimension(30,30)));
+        
         this.pack();
     }
     public void config(){
         getContentPane().removeAll();
         getContentPane().repaint();
         
-        BackgroundPanel bp = new BackgroundPanel(this);
+        BackgroundPanel bp = new BackgroundPanel(this,1);
         bp.setLayout(new BoxLayout(bp, BoxLayout.Y_AXIS));
         this.add(bp);
         
@@ -166,8 +197,7 @@ public class GameWindow extends JFrame{
     	getContentPane().removeAll();
 		getContentPane().repaint();
 
-        BackgroundPanel bp = new BackgroundPanel(this);
-        //bp.setLayout(new BoxLayout(bp, BoxLayout.Y_AXIS));
+        BackgroundPanel bp = new BackgroundPanel(this,0);
         this.add(bp);
         
     	count = new JLabel(" Mines: " +Integer.toString(mines));
