@@ -50,7 +50,7 @@ public class Cell extends GameButton{
 		}
 	}
 	private BufferedImage loadImage(){
-		URL imagePath = getClass().getResource("mine.png");
+		URL imagePath = getClass().getResource("gladius.png");
 		BufferedImage result = null;
 		try {
 			result = ImageIO.read(imagePath);
@@ -135,10 +135,8 @@ public class Cell extends GameButton{
 	public void setExploded(){
 		exploded=true;
 	}
-	public void setRevealed(boolean x){
+	public void setRevealed(){
 		revealed=true;
-		if(x)
-			exploded=x;
 	}
 	public void setNeighbors(int n){
 		neighbors=n;

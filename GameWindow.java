@@ -185,7 +185,7 @@ public class GameWindow extends JFrame{
         MenuPanel menu = new MenuPanel(grid);
         menu.setAlignmentX(JComponent.LEFT_ALIGNMENT);
         menu.setAlignmentY(JComponent.CENTER_ALIGNMENT);
-        menu.setPreferredSize(new Dimension(110,650));
+        menu.setPreferredSize(new Dimension(110,750));
         grid.setMenu(menu);
         
         for(int i=0;i<X*Y;i++){
@@ -245,6 +245,7 @@ public class GameWindow extends JFrame{
     	menu.add(qg);
         menu.add(Box.createRigidArea(new Dimension(30,30)));
 
+        bp.add(Box.createRigidArea(new Dimension(500,85)));
         bp.add(board);
         bp.add(menu);
     	this.pack();

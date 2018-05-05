@@ -40,7 +40,7 @@ public class Grid{
 		if(exploded)
 			c.setExploded();
 		if(revealState)
-			c.setRevealed(false);
+			c.setRevealed();
 		c.setFlag(flag);
 		c.setNeighbors(neighbors);
 		c.setR();
@@ -78,7 +78,7 @@ public class Grid{
 	public void revealAll(){
 		for (int i=0;i<cells.length;i++){
 			if(!cells[i].getRevealState() && cells[i].isMined()){
-				cells[i].setRevealed(false);
+				cells[i].setRevealed();
 				cells[i].repaint();
 			}
 		}	
@@ -162,21 +162,21 @@ public class Grid{
 		if((i+1)%X!=0){ //do unless edge cell
 			if(p+1>0){
 				if(!cells[p+1].getRevealState()){
-					cells[p+1].setRevealed(false);
+					cells[p+1].setRevealed(); //reveal, with exploded=false
 					cells[p+1].repaint();
 				}
 			}	
 		}	
 		if(p>=0){
 			if(!cells[p].getRevealState()){
-				cells[p].setRevealed(false);
+				cells[p].setRevealed();
 				cells[p].repaint();
 			}
 		}
 		if(i%X!=0){
 			if((p-1)>=0){
 				if(!cells[p-1].getRevealState()){	
-					cells[p-1].setRevealed(false);
+					cells[p-1].setRevealed();
 					cells[p-1].repaint();
 				}
 			}
@@ -184,7 +184,7 @@ public class Grid{
 		if((i+1)%X!=0){
 			if((i+1)<cells.length){
 				if(!cells[i+1].getRevealState()){
-					cells[i+1].setRevealed(false);
+					cells[i+1].setRevealed();
 					cells[i+1].repaint();
 				}
 			}
@@ -193,7 +193,7 @@ public class Grid{
 			if((i-1)>=0){
 				if(!cells[i-1].getRevealState()){
 				//if(cells[i-1].isMined()){
-					cells[i-1].setRevealed(false);
+					cells[i-1].setRevealed();
 					cells[i-1].repaint();
 				}				
 			}
@@ -202,21 +202,21 @@ public class Grid{
 		if((i+1)%X!=0){
 			if(p+1<cells.length){
 				if(!cells[p+1].getRevealState()){
-					cells[p+1].setRevealed(false);
+					cells[p+1].setRevealed();
 					cells[p+1].repaint();
 				}
 			}
 		}
 		if(p<cells.length){
 			if(!cells[p].getRevealState()){
-				cells[p].setRevealed(false);
+				cells[p].setRevealed();
 				cells[p].repaint();
 			}
 		}
 		if(i%X!=0){
 			if((p-1)<cells.length){
 				if(!cells[p-1].getRevealState()){
-					cells[p-1].setRevealed(false);
+					cells[p-1].setRevealed();
 					cells[p-1].repaint();
 				}
 			}
