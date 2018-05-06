@@ -12,6 +12,10 @@ import java.awt.event.*;
 import java.awt.image.*;
 import java.net.URL;
 import java.awt.image.BufferedImage;
+import java.util.Timer;
+import java.util.Scanner;
+import java.util.TimerTask;
+
 
 
 public class GameWindow extends JFrame{
@@ -21,8 +25,13 @@ public class GameWindow extends JFrame{
     private int X;
     private int Y;
     private int mines;
+    private int time;
     private JLabel count;
+    private JLabel countDown;
     private JLabel title;
+    private Timer chronos;
+    private Scanner scan;    
+
     public static void main(String[] args){
         GameWindow window=new GameWindow(1116,954,0,0);
     } 
@@ -43,6 +52,7 @@ public class GameWindow extends JFrame{
         X=5;
         Y=5;
         mines=10;
+        chronos = new Timer();
      }
     public void configButton(GameButton b){
     	b.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -147,6 +157,14 @@ public class GameWindow extends JFrame{
         GameButton pM = new GameButton("+");
         pM.addActionListener(new PlusMine(this,lmines));
 
+        JLabel lTime = new JLabel("Timer: 0 min. 0 sec.");
+        lTime.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        GameButton mT = new GameButton("-");
+        mT.addActionListener(new MinusTime(this,lTime));
+        GameButton pT = new GameButton("+");
+        pT.addActionListener(new PlusTime(this,lTime));
+        lTime.setForeground(Color.WHITE);
+
         GameButton pg = new GameButton ("Create");
         
         PlayGame pgl = new PlayGame(this);
@@ -172,6 +190,12 @@ public class GameWindow extends JFrame{
         pg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         mg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         qg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        lTime.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        mT.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        pT.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        pg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        mg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        qg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
     	
         bp.add(lwidth);        
         bp.add(pW);    
@@ -183,7 +207,11 @@ public class GameWindow extends JFrame{
         bp.add(Box.createRigidArea(new Dimension(30,30)));
         bp.add(lmines);    
         bp.add(pM);    
-        bp.add(mM);    
+        bp.add(mM);  
+        bp.add(Box.createRigidArea(new Dimension(30,30)));
+        bp.add(lTime);    
+        bp.add(pT);    
+        bp.add(mT);      
         bp.add(Box.createRigidArea(new Dimension(30,30)));
         bp.add(pg);
         bp.add(Box.createRigidArea(new Dimension(30,30)));
@@ -203,6 +231,13 @@ public class GameWindow extends JFrame{
     	count = new JLabel(" Mines: " +Integer.toString(mines));
         count.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         count.setForeground(Color.WHITE);
+
+        countDown = new JLabel("Timer: "+Integer.toString(time/60)+":"+Integer.toString(time%60));
+        countDown.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        countDown.setForeground(Color.WHITE);
+
+        chronos.scheduleAtFixedRate(new GameWindowTimer(this, countDown), 1000, 1000);
+ 
         
         if(!resumed){
             grid=new Grid(X,Y,mines,count);
@@ -266,6 +301,8 @@ public class GameWindow extends JFrame{
         menu.add(Box.createRigidArea(new Dimension(30,100)));
         menu.add(count);
         menu.add(Box.createRigidArea(new Dimension(30,100)));
+        menu.add(countDown);
+        menu.add(Box.createRigidArea(new Dimension(30,100)));
         menu.add(ng);
         menu.add(Box.createRigidArea(new Dimension(30,100)));
     	menu.add(mg);
@@ -282,6 +319,7 @@ public class GameWindow extends JFrame{
     }
     public void setEnd(){
         end=true;
+        grid.setEnd(false);
     } 
     public void setX(int x){
         X=x;
@@ -300,6 +338,15 @@ public class GameWindow extends JFrame{
     }
     public void setMines(int m){
         mines=m;
+    }
+     public int getTime(){
+        return time;
+    }
+    public void setTime(int t){
+        time=t;
+    }
+    public void stopTimer(){
+        this.chronos.cancel();
     }
     public JLabel getCount(){
         return count;
