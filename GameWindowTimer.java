@@ -10,15 +10,13 @@ import java.awt.event.*;
 import java.util.*;
 
 
-public class GameWindowTimer extends TimerTask {
+public class GameWindowTimer extends TimerTask {	
 	private GameWindow gW;
 	private JLabel remain;
-	private Grid grid;
 
-	public GameWindowTimer(GameWindow w , JLabel lb, Grid g){	
+	public GameWindowTimer(GameWindow w , JLabel lb){	
 		gW = w;
 		remain = lb;
-		grid=g;
 	}
 	private int setTimer(){
 		gW.setTime(gW.getTime()-1);
@@ -33,15 +31,14 @@ public class GameWindowTimer extends TimerTask {
 		else{
 			remain.setText("Timer: "+Integer.toString(gW.getTime()/60)+":"+Integer.toString(gW.getTime()%60));
 		}
-		this.setTimer();
-		if (gW.getTime()==-1)
-		{
-			gW.setEnd();
-			gW.setTime(0);
-			gW.stopTimer();			
-		}
-		if(grid.getGameState()==2){
-			gW.stopTimer();
+		if(gW.getGameState()==0){
+			this.setTimer();
+			if (gW.getTime()==-1)
+			{
+				gW.setEnd();
+				gW.setTime(0);
+				gW.stopTimer();			
+			}
 		}
 	}
 }

@@ -231,7 +231,7 @@ public class GameWindow extends JFrame{
         countDown = new JLabel("Timer: "+Integer.toString(time/60)+":"+Integer.toString(time%60));
         countDown.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         countDown.setForeground(Color.WHITE);
-        GameWindowTimer gwt= new GameWindowTimer(this, countDown, grid);
+        GameWindowTimer gwt= new GameWindowTimer(this, countDown);
         chronos.scheduleAtFixedRate(gwt, 1000, 1000);
  
         
@@ -316,6 +316,9 @@ public class GameWindow extends JFrame{
             stopTimer();
         */
     	this.pack();
+    }
+    public int getGameState(){
+        return grid.getGameState();
     }
     public void setEnd(){
         grid.setEnd(false);

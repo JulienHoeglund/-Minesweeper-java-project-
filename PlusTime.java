@@ -17,16 +17,13 @@ public class PlusTime implements ActionListener{
 	public PlusTime(GameWindow window, JLabel label){
 		l=label;
 		w=window;
+		w.setTime(0);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
-	
 			w.setTime(w.getTime()+15);
 			min = w.getTime()/60;
 			sec = w.getTime()%60;
-		
 			l.setText("Timer: "+Integer.toString(min) +" min."+Integer.toString(sec) +" sec." );
-	
-		
 	}
 }
