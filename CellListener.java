@@ -21,10 +21,10 @@ public class CellListener implements MouseListener{
         if(e.getButton()==MouseEvent.BUTTON1 && !c.getRevealState() && c.getFlag()!=1  && g.getGameState()==0){
             c.setRevealed();
             if(c.isMined()){
-    			g.setEnd(false);
+    			g.setEnd(false); //false = defeat
                 c.setRevealed();
                 c.setExploded();
-                g.setDefeat();
+                //stopTimer();
             }
             c.repaint(); 
         }

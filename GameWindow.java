@@ -17,11 +17,9 @@ import java.util.Scanner;
 import java.util.TimerTask;
 
 
-
 public class GameWindow extends JFrame{
 	private int height,width,xPos,yPos;
 	private Grid grid;
-	private boolean end;
     private int X;
     private int Y;
     private int mines;
@@ -30,7 +28,6 @@ public class GameWindow extends JFrame{
     private JLabel countDown;
     private JLabel title;
     private Timer chronos;
-    private Scanner scan;    
 
     public static void main(String[] args){
         GameWindow window=new GameWindow(1116,954,0,0);
@@ -42,7 +39,6 @@ public class GameWindow extends JFrame{
 		this.setLocation(x, y);
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        end=false;
         title = new JLabel(t);
         title.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         title.setMaximumSize(new Dimension(200,100));
@@ -70,7 +66,7 @@ public class GameWindow extends JFrame{
         mg.addActionListener(mgl);
         mg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         configButton(mg);        
-        bp.add(Box.createRigidArea(new Dimension(30,500)));
+        bp.add(Box.createRigidArea(new Dimension(30,500))); 
         bp.add(mg);
         this.pack();
     }
@@ -235,8 +231,8 @@ public class GameWindow extends JFrame{
         countDown = new JLabel("Timer: "+Integer.toString(time/60)+":"+Integer.toString(time%60));
         countDown.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         countDown.setForeground(Color.WHITE);
-
-        chronos.scheduleAtFixedRate(new GameWindowTimer(this, countDown), 1000, 1000);
+        GameWindowTimer gwt= new GameWindowTimer(this, countDown, grid);
+        chronos.scheduleAtFixedRate(gwt, 1000, 1000);
  
         
         if(!resumed){
@@ -315,10 +311,13 @@ public class GameWindow extends JFrame{
         bp.add(Box.createRigidArea(new Dimension(500,85)));
         bp.add(board);
         bp.add(menu);
+        
+        /*if(grid.getGameState()==2)
+            stopTimer();
+        */
     	this.pack();
     }
     public void setEnd(){
-        end=true;
         grid.setEnd(false);
     } 
     public void setX(int x){

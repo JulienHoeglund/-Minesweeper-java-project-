@@ -18,11 +18,10 @@ public class Grid{
 	private int index;
 	private int cellsLeft;
 	private int mines;
-	private int gameState;
 	private int flagCount;
 	private JLabel l;
 	private MenuPanel m;
-
+	private int gameState;
 	public Grid(int sizeX, int sizeY, int m, JLabel label){
 		X=sizeX;
 		Y=sizeY;
@@ -222,6 +221,9 @@ public class Grid{
 			}
 		}
 	}
+	public int getGameState(){
+		return gameState;
+	}
 	public int getMines(){
 		return mines; 
 	}
@@ -243,10 +245,4 @@ public class Grid{
     public void decCellsLeft(){
     	cellsLeft--;
     }
-    public int getGameState(){
-		return gameState;
-	}
-	public void setDefeat(){
-		gameState=2;
-	}
 }

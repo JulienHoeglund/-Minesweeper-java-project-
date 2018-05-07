@@ -15,11 +15,11 @@ public class GameWindowTimer extends TimerTask {
 	private JLabel remain;
 	private Grid grid;
 
-	public GameWindowTimer(GameWindow w , JLabel lb){	
+	public GameWindowTimer(GameWindow w , JLabel lb, Grid g){	
 		gW = w;
 		remain = lb;
+		grid=g;
 	}
-
 	private int setTimer(){
 		gW.setTime(gW.getTime()-1);
 		int t = gW.getTime();
@@ -27,27 +27,21 @@ public class GameWindowTimer extends TimerTask {
 	}
 	@Override
 	public void run(){
-
 		if (gW.getTime()%60 < 10 ){
 			remain.setText("Timer: 0"+Integer.toString(gW.getTime()/60)+":0"+Integer.toString(gW.getTime()%60));
-			
-			
 		}
 		else{
 			remain.setText("Timer: "+Integer.toString(gW.getTime()/60)+":"+Integer.toString(gW.getTime()%60));
 		}
 		this.setTimer();
-
-
-		if (gW.getTime() <  0)
+		if (gW.getTime()==-1)
 		{
 			gW.setEnd();
+			gW.setTime(0);
 			gW.stopTimer();			
 		}
-		
-		System.out.println(gW.getTime());
+		if(grid.getGameState()==2){
+			gW.stopTimer();
+		}
 	}
-
-
-
 }
