@@ -1,5 +1,5 @@
 /**
-* MinusTime is a button which substracts 15 seconds to the game timer   
+* PlusTime is a button which adds 1 minute to the game timer   
 *
 * @version 0.1
 * @author Julien Hoeglund , Valentin Lefebure
@@ -21,7 +21,7 @@ public class PlusTime implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
-			w.setTime(w.getTime()+15);
+			w.setTime(w.getTime()+60);
 			min = w.getTime()/60;
 			sec = w.getTime()%60;
 			l.setText("Timer: "+Integer.toString(min) +" min."+Integer.toString(sec) +" sec." );
