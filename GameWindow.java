@@ -220,7 +220,7 @@ public class GameWindow extends JFrame{
 	public void runGame(boolean resumed){	
     	getContentPane().removeAll();
 		getContentPane().repaint();
-
+        chronos=new Timer();
         BackgroundPanel bp = new BackgroundPanel(this,0);
         this.add(bp);
         
@@ -232,8 +232,7 @@ public class GameWindow extends JFrame{
         countDown.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         countDown.setForeground(Color.WHITE);
         GameWindowTimer gwt= new GameWindowTimer(this, countDown);
-        chronos.scheduleAtFixedRate(gwt, 1000, 1000);
- 
+        chronos.scheduleAtFixedRate(gwt, 0, 1000);
         
         if(!resumed){
             grid=new Grid(X,Y,mines,count);
@@ -317,6 +316,9 @@ public class GameWindow extends JFrame{
         */
     	this.pack();
     }
+    public void stopTimer(){
+        chronos.cancel();
+    }
     public int getGameState(){
         return grid.getGameState();
     }
@@ -347,9 +349,7 @@ public class GameWindow extends JFrame{
     public void setTime(int t){
         time=t;
     }
-    public void stopTimer(){
-        this.chronos.cancel();
-    }
+    
     public JLabel getCount(){
         return count;
     }    
@@ -375,6 +375,7 @@ public class GameWindow extends JFrame{
                 f.writeInt(cells[i].getFlag());
                 f.writeBoolean(cells[i].getR());
                 f.writeBoolean(cells[i].getDec());
+                f.writeInt(getTime());
             }
             f.close();
         }catch(IOException ioe){

@@ -24,7 +24,6 @@ public class Cell extends GameButton{
 	private Grid g;
 	private boolean defeat;
 	private BufferedImage img;
-	private BufferedImage explosion;
 	
 	public Cell(Grid gd, int i){
 		super();

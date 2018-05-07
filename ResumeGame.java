@@ -26,6 +26,7 @@ public class ResumeGame implements ActionListener{
 		int flag;
 		boolean r;
 		boolean dec;
+		int time;
 		try{
 			X=f.readInt();
 			Y=f.readInt();
@@ -40,10 +41,12 @@ public class ResumeGame implements ActionListener{
 				flag=f.readInt();
 				r=f.readBoolean();
 				dec=f.readBoolean();
+				time=f.readInt();
 				g.loadCell(id,revealState,mined,exploded,neighbors,flag,r,dec);
 				w.setX(X);
 				w.setY(Y);
 				w.setGrid(g);
+				w.setTime(time);
 			}
 			f.close();
 		}catch(IOException ex){

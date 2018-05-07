@@ -1,5 +1,5 @@
 /*
-The GameWindowTimer allows us to set an end to the game when the timer ( which has been previously set by the player ) hits 0
+*The GameWindowTimer allows us to set an end to the game when the timer ( which has been previously set by the player ) hits 0
 * @version 0.1
 * @author Julien Hoeglund, Valentin Lefebure
 */
@@ -18,11 +18,6 @@ public class GameWindowTimer extends TimerTask {
 		gW = w;
 		remain = lb;
 	}
-	private int setTimer(){
-		gW.setTime(gW.getTime()-1);
-		int t = gW.getTime();
-		return t;
-	}
 	@Override
 	public void run(){
 		if (gW.getTime()%60 < 10 ){
@@ -32,12 +27,13 @@ public class GameWindowTimer extends TimerTask {
 			remain.setText("Timer: "+Integer.toString(gW.getTime()/60)+":"+Integer.toString(gW.getTime()%60));
 		}
 		if(gW.getGameState()==0){
-			this.setTimer();
-			if (gW.getTime()==-1)
+			gW.setTime(gW.getTime()-1);
+			int t = gW.getTime();
+			if(gW.getTime()==-1)
 			{
 				gW.setEnd();
 				gW.setTime(0);
-				gW.stopTimer();			
+				gW.stopTimer();
 			}
 		}
 	}
