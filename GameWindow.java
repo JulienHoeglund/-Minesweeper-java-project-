@@ -144,21 +144,29 @@ public class GameWindow extends JFrame{
 
         JLabel lmines = new JLabel("Mines: "+mines);
         lmines.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        GameButton mM = new GameButton("-");
+        GameButton m10M = new GameButton("-10");
+        m10M.addActionListener(new Minus10Mine(this,lmines));
+        GameButton mM = new GameButton("-1");
         mM.addActionListener(new MinusMine(this,lmines));
         
         lwidth.setForeground(Color.WHITE);
         lheight.setForeground(Color.WHITE);
         lmines.setForeground(Color.WHITE);
-        GameButton pM = new GameButton("+");
+        GameButton pM = new GameButton("+1");
         pM.addActionListener(new PlusMine(this,lmines));
+        GameButton p10M = new GameButton("+10");
+        p10M.addActionListener(new Plus10Mine(this,lmines));
 
         JLabel lTime = new JLabel("Timer: 0 min. 0 sec.");
         lTime.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-        GameButton mT = new GameButton("-");
-        mT.addActionListener(new MinusTime(this,lTime));
-        GameButton pT = new GameButton("+");
+        GameButton mmT = new GameButton("-1m");
+        mmT.addActionListener(new MinusTime(this,lTime));
+        GameButton mT = new GameButton("-15s");
+        mT.addActionListener(new MinusTime15(this,lTime));
+        GameButton pT = new GameButton("+15s");
         pT.addActionListener(new PlusTime(this,lTime));
+        GameButton pmT = new GameButton("+1m");
+        pmT.addActionListener(new PlusTime(this,lTime));
         lTime.setForeground(Color.WHITE);
 
         GameButton pg = new GameButton ("Create");
@@ -181,12 +189,16 @@ public class GameWindow extends JFrame{
         mH.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         pH.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         lmines.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        p10M.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        m10M.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         pM.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         mM.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         pg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         mg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         qg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         lTime.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        mmT.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+        pmT.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         mT.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         pT.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         pg.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -201,13 +213,17 @@ public class GameWindow extends JFrame{
         bp.add(pH);
         bp.add(mH);    
         bp.add(Box.createRigidArea(new Dimension(30,30)));
-        bp.add(lmines);    
+        bp.add(lmines);
+        bp.add(p10M);    
         bp.add(pM);    
-        bp.add(mM);  
+        bp.add(mM); 
+        bp.add(m10M); 
         bp.add(Box.createRigidArea(new Dimension(30,30)));
-        bp.add(lTime);    
+        bp.add(lTime);
+        bp.add(pmT);    
         bp.add(pT);    
-        bp.add(mT);      
+        bp.add(mT); 
+        bp.add(mmT);     
         bp.add(Box.createRigidArea(new Dimension(30,30)));
         bp.add(pg);
         bp.add(Box.createRigidArea(new Dimension(30,30)));
