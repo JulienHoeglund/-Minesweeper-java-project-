@@ -1,15 +1,15 @@
-/**
-* The GameWindow class draws and updates the game window 
-*
-* @version 0.1
-* @author Julien Hoeglund
-*/
 import javax.swing.*; 
 import java.io.*; 
 import java.awt.*; 
 import java.awt.image.*; 	
 import javax.imageio.*; 
 
+/**
+* BackgroundPanel draws the background image and text. 
+*
+* @version 0.1
+* @author Julien Hoeglund
+*/
 public class BackgroundPanel extends JPanel{
     BufferedImage img;
     GameWindow w;

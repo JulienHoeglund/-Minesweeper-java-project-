@@ -1,20 +1,19 @@
-/*
-*The GameWindowTimer allows us to set an end to the game when the timer ( which has been previously set by the player ) hits 0
-* @version 0.1
-* @author Julien Hoeglund, Valentin Lefebure
-*/
+
 import java.io.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-
-
-public class GameWindowTimer extends TimerTask {	
+/*
+*GameTimer allows the player to set an end to the game so it can be more challenging.
+* @version 0.1
+* @author Julien Hoeglund, Valentin Lefebure
+*/
+public class GameTimer extends TimerTask {	
 	private GameWindow gW;
 	private JLabel remain;
 
-	public GameWindowTimer(GameWindow w , JLabel lb){	
+	public GameTimer(GameWindow w , JLabel lb){	
 		gW = w; 
 		remain = lb;
 	}

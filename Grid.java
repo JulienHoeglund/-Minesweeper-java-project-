@@ -1,16 +1,15 @@
-/**
-* The Grid class draws and updates the game grid holding cells
-*
-* @version 0.1
-* @author Julien Hoeglund
-*/
-
 import java.util.Random;
 import java.lang.Exception.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 
+/**
+* Grid draws and updates the game grid holding cells. It generates the cells, the mines, counts their neighbors and does all the work around player flags.
+*
+* @version 0.1
+* @author Julien Hoeglund
+*/
 public class Grid{
 	private Cell[] cells;
 	private int X;
@@ -42,9 +41,7 @@ public class Grid{
 			c.setRevealed();
 		c.setFlag(flag);
 		c.setNeighbors(neighbors);
-		c.setR();
-		c.setDec();
-		
+	
 		cells[id]=c;
 	}
 	public void setMenu(MenuPanel menu){

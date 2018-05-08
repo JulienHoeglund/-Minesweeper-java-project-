@@ -1,11 +1,11 @@
+import java.awt.event.*;
+import java.io.*;
 /**
-* The ResumeGame class reads the state of the last game from a file and loads it
+* ResumeGame reads the state of the last game from a file and loads it in a new Grid object.
 *
 * @version 0.1
 * @author Julien Hoeglund
 */
-import java.awt.event.*;
-import java.io.*;
 public class ResumeGame implements ActionListener{
 	private GameWindow w;
 	private Grid g;

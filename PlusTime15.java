@@ -1,13 +1,12 @@
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
 /**
-* PlusTime15 is a button which adds 15 seconds to the game timer   
+* PlusTime15 adds 15 seconds to the game timer.   
 *
 * @version 0.1
 * @author Julien Hoeglund , Valentin Lefebure
 */
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.*;
-
 public class PlusTime15 implements ActionListener{
 	private GameWindow w;
 	private JLabel l;

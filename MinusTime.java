@@ -1,13 +1,12 @@
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
 /**
-* MinusTime is a button which substracts 1 minute to the game timer   
+* MinusTime is a button which substracts 1 minute to the game timer.   
 *
 * @version 0.1
 * @author Julien Hoeglund , Valentin Lefebure
 */
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.*;
-
 public class MinusTime implements ActionListener{
 	private GameWindow w;
 	private JLabel l;

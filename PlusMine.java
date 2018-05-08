@@ -1,11 +1,12 @@
-/*
-	PlusMine is a class which adds 1 mine to the total of mines on the grid
-*/
-
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
-
+/**
+* PlusTime adds 1 mine to the game.   
+*
+* @version 0.1
+* @author Julien Hoeglund
+*/
 public class PlusMine implements ActionListener{
 	private GameWindow w;
 	private JLabel l;

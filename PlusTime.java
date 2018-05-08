@@ -1,13 +1,12 @@
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
 /**
-* PlusTime is a button which adds 1 minute to the game timer   
+* PlusTime adds 1 minute to the game timer.   
 *
 * @version 0.1
 * @author Julien Hoeglund , Valentin Lefebure
 */
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.*;
-
 public class PlusTime implements ActionListener{
 	private GameWindow w;
 	private JLabel l;

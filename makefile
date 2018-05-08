@@ -7,7 +7,7 @@ JVM=java
 	
 CLASSES= \
 		GameWindow.java \
-		GameWindowTimer.java \
+		GameTimer.java \
 		Cell.java \
 		CellListener.java \
 		StoryListener.java \

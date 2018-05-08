@@ -1,11 +1,12 @@
-/*
-	Plus10Mine is a class which adds 10 mines to the total of mines on the grid
-*/
-
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
-
+/**
+* PlusHeight increments the number of mines by 10.   
+*
+* @version 0.1
+* @author Julien Hoeglund, Valentin Lefebure
+*/
 public class Plus10Mine implements ActionListener{
 	private GameWindow w;
 	private JLabel l;

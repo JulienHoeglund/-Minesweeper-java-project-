@@ -1,13 +1,12 @@
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
 /**
-* MinusHeight is a button which decrements the number of cell rows   
+* MinusHeight is a button which decrements the number of cell rows.   
 *
 * @version 0.1
 * @author Julien Hoeglund
 */
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.*;
-
 public class MinusHeight implements ActionListener{
 	private GameWindow w;
 	private JLabel l;

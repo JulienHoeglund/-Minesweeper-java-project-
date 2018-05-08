@@ -1,13 +1,13 @@
-/**
-* MinusTime15 is a button which substracts 15 seconds to the game timer   
-*
-* @version 0.1
-* @author Julien Hoeglund , Valentin Lefebure
-*/
 import java.awt.event.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+* MinusTime15 is a button which substracts 15 seconds to the game timer.   
+*
+* @version 0.1
+* @author Julien Hoeglund , Valentin Lefebure
+*/
 public class MinusTime15 implements ActionListener{
 	private GameWindow w;
 	private JLabel l;

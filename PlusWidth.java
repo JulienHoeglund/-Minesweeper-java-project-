@@ -1,14 +1,12 @@
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
 /**
-* PlusWidth is a button which decrements the number of cell columns    
+* PlusWidth decrements the number of columns in the grid.    
 *
 * @version 0.1
 * @author Julien Hoeglund
 */
-
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.*;
-
 public class PlusWidth implements ActionListener{
 	private GameWindow w;
 	private JLabel l;

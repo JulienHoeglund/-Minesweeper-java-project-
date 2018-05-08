@@ -1,12 +1,11 @@
+import javax.swing.*;
+import java.awt.*;
 /**
-* MinePanel is a class used to manage the different game views  
+* MenuPanel is a panel where information about the game is displayed for the player.  
 *
 * @version 0.1
 * @author Julien Hoeglund
 */
-import javax.swing.*;
-import java.awt.*;
-
 public class MenuPanel extends JPanel{
 	private boolean end;
 	private boolean victory;

@@ -1,13 +1,12 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.*;
 /**
-* GameButton is a class used to make beautiful custom buttons  
+* GameButton inherits JButton. It tweaks some minor visual things which all buttons of the game inherit to avoid rewriting code.    
 *
 * @version 0.1
 * @author Julien Hoeglund
 */
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.*;
-
 public class GameButton extends JButton{
 	public GameButton(){
 		this.setFocusable(false);

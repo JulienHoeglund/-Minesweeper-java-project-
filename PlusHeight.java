@@ -1,13 +1,12 @@
+import java.awt.event.*;
+import javax.swing.*;
+import java.awt.*;
 /**
-* PlusHeight is a button which increments the number of cell rows of the incoming game   
+* PlusHeight increments the number of cell rows in the grid.   
 *
 * @version 0.1
 * @author Julien Hoeglund
 */
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.*;
-
 public class PlusHeight implements ActionListener{
 	private GameWindow w;
 	private JLabel l;

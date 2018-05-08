@@ -1,17 +1,16 @@
-/**
-* The Cell class holds information about a g cell : location, whether it 
-* has a mine or the number of mines around it, its display state, etc  
-*
-* @version 0.1
-* @author Julien Hoeglund
-*/
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.*;
 import java.io.*;
 import java.net.*;
 import javax.imageio.*;
-
+/**
+* Cell holds information about a cell : location, whether it 
+* has a mine, the number of mines around it (neighbors), its display state, etc...  
+*
+* @version 0.1
+* @author Julien Hoeglund
+*/
 public class Cell extends GameButton{
 	private int id;
 	private boolean revealed;
@@ -151,17 +150,5 @@ public class Cell extends GameButton{
 	}
 	public void setFlag(int flag){
 		f=flag;
-	}
-	public void setR(){
-		r=true;
-	}
-	public void setDec(){
-		dec=true;
-	}
-	public boolean getR(){
-		return r;
-	}
-	public boolean getDec(){
-		return dec;
 	}
 }

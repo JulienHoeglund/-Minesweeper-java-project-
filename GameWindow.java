@@ -1,9 +1,3 @@
-/**
-* The GameWindow class is the main class of the projet, it draws and updates the game window by instantiating other classes
-*
-* @version 0.1
-* @author Julien Hoeglund
-*/
 import java.io.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,9 +9,14 @@ import java.awt.image.BufferedImage;
 import java.util.Timer;
 import java.util.Scanner;
 import java.util.TimerTask;
-
+/**
+* GameWindow is the main class of the project, it draws and updates the game window.
+* 
+*
+* @version 0.1
+* @author Julien Hoeglund
+*/
 public class GameWindow extends JFrame{
-	private int height,width,xPos,yPos;
  	private Grid grid;
     private int X;
     private int Y;
@@ -27,7 +26,7 @@ public class GameWindow extends JFrame{
     private JLabel countDown;
     private JLabel title;
     private static Timer chronos;
-    private GameWindowTimer gwt; 
+    private GameTimer gwt; 
     private boolean gameRunning;
 
     public static void main(String[] args){
@@ -256,7 +255,7 @@ public class GameWindow extends JFrame{
         countDown.setForeground(Color.WHITE);
 
         chronos = new Timer();
-        gwt = new GameWindowTimer(this, countDown);
+        gwt = new GameTimer(this, countDown);
         chronos.scheduleAtFixedRate(gwt, 0, 1000);
         
         if(!resumed){
@@ -297,7 +296,7 @@ public class GameWindow extends JFrame{
                 save();
             }
         });
-        
+
     	GameButton qg = new GameButton("Quit",1);
         QuitGame qgl = new QuitGame(this);
         qg.addActionListener(qgl);
@@ -399,8 +398,6 @@ public class GameWindow extends JFrame{
                 f.writeBoolean(cells[i].getExploded());
                 f.writeInt(cells[i].getNeighbors());
                 f.writeInt(cells[i].getFlag());
-                f.writeBoolean(cells[i].getR());
-                f.writeBoolean(cells[i].getDec());
                 f.writeInt(getTime());
             }
             f.close();
