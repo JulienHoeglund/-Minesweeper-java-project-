@@ -17,6 +17,7 @@ public class ResumeGame implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
+		w.stopTimer();
 		int X,Y;
 		int id;
 		boolean revealState;

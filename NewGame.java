@@ -1,5 +1,5 @@
 /**
-* PlayGameButton launches the configuration of a new game   
+* NewGameButton launches the configuration of a new game   
 *
 * @version 0.1
 * @author Julien Hoeglund

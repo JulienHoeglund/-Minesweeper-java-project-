@@ -7,6 +7,8 @@ public class PlayGame implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
-		w.runGame(false);
+		if(w.getTime()>0){
+		w.runGame(false);				
+		}
 	}
 }

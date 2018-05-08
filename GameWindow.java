@@ -1,5 +1,5 @@
 /**
-* The GameWindow class is the main class of the projet, it draws and updates the game window by instantiating other classesss
+* The GameWindow class is the main class of the projet, it draws and updates the game window by instantiating other classes
 *
 * @version 0.1
 * @author Julien Hoeglund
@@ -74,8 +74,6 @@ public class GameWindow extends JFrame{
         getContentPane().repaint();
         
         gameRunning=false;
-
-        //cancel le timer s'il run déjà 
 
         BackgroundPanel bp = new BackgroundPanel(this,1);
         bp.setLayout(new BoxLayout(bp, BoxLayout.Y_AXIS));
