@@ -16,7 +16,7 @@ public class Plus10Mine implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
-		if(w.getMines()<w.getX()*w.getY()){
+		if(w.getMines()+10<=(w.getX()*w.getY())){
 			w.setMines(w.getMines()+10);
 			l.setText("Mines: "+Integer.toString(w.getMines()));
 		}

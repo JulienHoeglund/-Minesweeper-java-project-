@@ -18,7 +18,7 @@ public class Minus10Mine implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
-		if(w.getMines()>0){
+		if(w.getMines()>=10){
 			w.setMines(w.getMines()-10);
 			l.setText("Mines: "+Integer.toString(w.getMines()));
 		}

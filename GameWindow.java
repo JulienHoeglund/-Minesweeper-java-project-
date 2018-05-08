@@ -1,5 +1,5 @@
 /**
-* The GameWindow class draws and updates the game window 
+* The GameWindow class is the main class of the projet, it draws and updates the game window by instantiating other classesss
 *
 * @version 0.1
 * @author Julien Hoeglund
@@ -16,7 +16,6 @@ import java.util.Timer;
 import java.util.Scanner;
 import java.util.TimerTask;
 
-
 public class GameWindow extends JFrame{
 	private int height,width,xPos,yPos;
 	private Grid grid;
@@ -27,7 +26,8 @@ public class GameWindow extends JFrame{
     private JLabel count;
     private JLabel countDown;
     private JLabel title;
-    private Timer chronos;
+    private static Timer chronos;
+    private boolean gameRunning;
 
     public static void main(String[] args){
         GameWindow window=new GameWindow(1116,954,0,0);
@@ -48,7 +48,6 @@ public class GameWindow extends JFrame{
         X=5;
         Y=5;
         mines=10;
-        chronos = new Timer();
      }
     public void configButton(GameButton b){
     	b.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -73,6 +72,11 @@ public class GameWindow extends JFrame{
     public void menu(){
         getContentPane().removeAll();
         getContentPane().repaint();
+        
+        gameRunning=false;
+
+        //cancel le timer s'il run déjà 
+
         BackgroundPanel bp = new BackgroundPanel(this,1);
         bp.setLayout(new BoxLayout(bp, BoxLayout.Y_AXIS));
         this.add(bp);
@@ -96,6 +100,7 @@ public class GameWindow extends JFrame{
             bp.add(ng);
             bp.add(Box.createRigidArea(new Dimension(30,30)));    
             r=true;
+            chronos=new Timer();
         }catch(FileNotFoundException fnfe){
         }
         
@@ -103,7 +108,7 @@ public class GameWindow extends JFrame{
         story.setForeground(Color.WHITE);
         story.addActionListener(new StoryListener(this));
         GameButton qg = new GameButton("Quit");
-        QuitGame qgl = new QuitGame(this,grid);
+        QuitGame qgl = new QuitGame(this);
         qg.addActionListener(qgl);
         
         configButton(story);
@@ -124,10 +129,12 @@ public class GameWindow extends JFrame{
         getContentPane().removeAll();
         getContentPane().repaint();
         
+        grid=new Grid(0,0,0,null);
+
         BackgroundPanel bp = new BackgroundPanel(this,1);
         bp.setLayout(new BoxLayout(bp, BoxLayout.Y_AXIS));
         this.add(bp);
-        
+        gameRunning=false;
         bp.add(title);
         
         JLabel lwidth = new JLabel("Width: "+X); 
@@ -164,7 +171,7 @@ public class GameWindow extends JFrame{
         GameButton mT = new GameButton("-15s");
         mT.addActionListener(new MinusTime15(this,lTime));
         GameButton pT = new GameButton("+15s");
-        pT.addActionListener(new PlusTime(this,lTime));
+        pT.addActionListener(new PlusTime15(this,lTime));
         GameButton pmT = new GameButton("+1m");
         pmT.addActionListener(new PlusTime(this,lTime));
         lTime.setForeground(Color.WHITE);
@@ -175,7 +182,7 @@ public class GameWindow extends JFrame{
         pg.addActionListener(pgl);
         
         GameButton qg = new GameButton("Quit");
-        QuitGame qgl = new QuitGame(this,grid);
+        QuitGame qgl = new QuitGame(this);
         qg.addActionListener(qgl);
 
         GameButton mg = new GameButton("Menu");
@@ -236,10 +243,12 @@ public class GameWindow extends JFrame{
 	public void runGame(boolean resumed){	
     	getContentPane().removeAll();
 		getContentPane().repaint();
-        chronos=new Timer();
         BackgroundPanel bp = new BackgroundPanel(this,0);
         this.add(bp);
-        
+
+        gameRunning=true;
+        chronos=new Timer();
+
     	count = new JLabel(" Mines: " +Integer.toString(mines));
         count.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         count.setForeground(Color.WHITE);
@@ -247,6 +256,7 @@ public class GameWindow extends JFrame{
         countDown = new JLabel("Timer: "+Integer.toString(time/60)+":"+Integer.toString(time%60));
         countDown.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         countDown.setForeground(Color.WHITE);
+
         GameWindowTimer gwt= new GameWindowTimer(this, countDown);
         chronos.scheduleAtFixedRate(gwt, 0, 1000);
         
@@ -290,7 +300,7 @@ public class GameWindow extends JFrame{
         });
         
     	GameButton qg = new GameButton("Quit",1);
-        QuitGame qgl = new QuitGame(this,grid);
+        QuitGame qgl = new QuitGame(this);
         qg.addActionListener(qgl);
         
         GameButton mg = new GameButton("Menu",1);
@@ -327,19 +337,20 @@ public class GameWindow extends JFrame{
         bp.add(board);
         bp.add(menu);
         
-        /*if(grid.getGameState()==2)
-            stopTimer();
-        */
     	this.pack();
     }
     public void stopTimer(){
         chronos.cancel();
+        chronos.purge();
     }
     public int getGameState(){
         return grid.getGameState();
     }
+    public boolean gameRunning(){
+        return gameRunning;
+    }
     public void setEnd(){
-        grid.setEnd(false);
+        grid.setEnd(false); 
     } 
     public void setX(int x){
         X=x;
@@ -365,7 +376,6 @@ public class GameWindow extends JFrame{
     public void setTime(int t){
         time=t;
     }
-    
     public JLabel getCount(){
         return count;
     }    

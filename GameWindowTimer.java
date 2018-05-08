@@ -15,7 +15,7 @@ public class GameWindowTimer extends TimerTask {
 	private JLabel remain;
 
 	public GameWindowTimer(GameWindow w , JLabel lb){	
-		gW = w;
+		gW = w; 
 		remain = lb;
 	}
 	@Override
@@ -26,15 +26,19 @@ public class GameWindowTimer extends TimerTask {
 		else{
 			remain.setText("Timer: "+Integer.toString(gW.getTime()/60)+":"+Integer.toString(gW.getTime()%60));
 		}
-		if(gW.getGameState()==0){
-			gW.setTime(gW.getTime()-1);
+		int gameState=gW.getGameState();
+		if(gameState==0 && gW.gameRunning()){
 			int t = gW.getTime();
-			if(gW.getTime()==-1)
-			{
+			gW.setTime(t-1);
+			if(gW.getTime()==-1){
 				gW.setEnd();
 				gW.setTime(0);
 				gW.stopTimer();
 			}
+		}
+		if(!gW.gameRunning()){
+			gW.stopTimer();
+			cancel();
 		}
 	}
 }

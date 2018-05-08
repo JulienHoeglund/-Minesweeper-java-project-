@@ -18,18 +18,21 @@ CLASSES= \
 		MinusMine.java \
 		MinusWidth.java \
 		MinusTime.java \
+		PlusTime15.java \
+		MinusTime15.java \
 		PlayGame.java \
 		PlusHeight.java \
 		PlusMine.java \
+		Plus10Mine.java \
+		Minus10Mine.java \
 		PlusWidth.java \
 		PlusTime.java \
 		QuitGame.java \
-		SaveGame.java \
 		NewGame.java \
 		ResumeGame.java \
 		BackgroundPanel.java \
-		QuitGame.java 
-
+		QuitGame.java
+		
 default: classes  
 
 classes: $(CLASSES:.java=.class)

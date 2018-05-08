@@ -54,9 +54,4 @@ public class ResumeGame implements ActionListener{
 		}
 		w.runGame(true);
 	}
-	/*
-	
-
-
-	*/
 }

@@ -9,10 +9,8 @@ import java.awt.event.*;
 
 public class QuitGame implements ActionListener{
 	private GameWindow w;
-	private Grid g;
-	public QuitGame(GameWindow window,Grid grid){
+	public QuitGame(GameWindow window){
 		w=window;
-		g=grid;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){

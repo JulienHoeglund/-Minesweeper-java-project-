@@ -55,11 +55,11 @@ public class Grid{
 		fl.delete();
 		m.setEnd(b);
 		m.repaint();
-		if(!b){
+		if(!b){	
 			revealAll();
-			gameState=2;
+			gameState=2; //defeat
 		}else{
-			gameState=1;
+			gameState=1; //victory
 		}
 	}
 	public Cell getCell(int index){
