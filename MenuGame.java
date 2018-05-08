@@ -14,5 +14,6 @@ public class MenuGame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e){
 		w.menu();
+		w.stopTimer();
 	}
 }

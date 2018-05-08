@@ -14,7 +14,7 @@ public class QuitGame implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
-		w.dispose();
 		w.stopTimer();
+		w.dispose();
 	}
 }

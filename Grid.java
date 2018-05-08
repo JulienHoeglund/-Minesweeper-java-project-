@@ -224,6 +224,9 @@ public class Grid{
 	public int getGameState(){
 		return gameState;
 	}
+	public void setGameState(int state){
+		gameState=state;
+	}
 	public int getMines(){
 		return mines; 
 	}

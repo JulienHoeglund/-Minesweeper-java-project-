@@ -33,8 +33,8 @@ public class MenuPanel extends JPanel{
 				font = new Font("Herculanum", Font.ITALIC, 13);
 				g2.setFont(font); 		
 				g2.setColor(Color.RED);
-				g2.drawString("You beat Minerva",0,(this.getWidth()/2+20));
-				//g2.drawString("",this.getWidth()/2-15,(this.getWidth()/2+33));
+				g2.drawString("You beat",this.getWidth()/2-25,(this.getWidth()/2+20));
+				g2.drawString("Minerva",this.getWidth()/2-20,(this.getWidth()/2+33));
 			}
 			else{
 				g2.drawString("Defeat !",(this.getWidth()/2)-35,this.getWidth()/2);

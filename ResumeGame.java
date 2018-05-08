@@ -47,6 +47,9 @@ public class ResumeGame implements ActionListener{
 				w.setX(X);
 				w.setY(Y);
 				w.setGrid(g);
+				if(exploded){
+					g.setGameState(2);
+				}
 				w.setTime(time);
 			}
 			f.close();

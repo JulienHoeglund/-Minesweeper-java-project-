@@ -18,7 +18,7 @@ import java.util.TimerTask;
 
 public class GameWindow extends JFrame{
 	private int height,width,xPos,yPos;
-	private Grid grid;
+ 	private Grid grid;
     private int X;
     private int Y;
     private int mines;
@@ -27,6 +27,7 @@ public class GameWindow extends JFrame{
     private JLabel countDown;
     private JLabel title;
     private static Timer chronos;
+    private GameWindowTimer gwt; 
     private boolean gameRunning;
 
     public static void main(String[] args){
@@ -245,7 +246,6 @@ public class GameWindow extends JFrame{
         this.add(bp);
 
         gameRunning=true;
-        chronos=new Timer();
 
     	count = new JLabel(" Mines: " +Integer.toString(mines));
         count.setAlignmentX(JComponent.CENTER_ALIGNMENT);
@@ -255,7 +255,8 @@ public class GameWindow extends JFrame{
         countDown.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         countDown.setForeground(Color.WHITE);
 
-        GameWindowTimer gwt= new GameWindowTimer(this, countDown);
+        chronos = new Timer();
+        gwt = new GameWindowTimer(this, countDown);
         chronos.scheduleAtFixedRate(gwt, 0, 1000);
         
         if(!resumed){
@@ -340,6 +341,7 @@ public class GameWindow extends JFrame{
     public void stopTimer(){
         chronos.cancel();
         chronos.purge();
+        gwt.cancel();
     }
     public int getGameState(){
         return grid.getGameState();
