@@ -129,7 +129,7 @@ public class GameWindow extends JFrame{
         
         grid=new Grid(0,0,0,null);
 
-        BackgroundPanel bp = new BackgroundPanel(this,1);
+        BackgroundPanel bp = new BackgroundPanel(this,0);
         bp.setLayout(new BoxLayout(bp, BoxLayout.Y_AXIS));
         this.add(bp);
         gameRunning=false;
