@@ -254,11 +254,11 @@ public class GameWindow extends JFrame{
         countDown = new JLabel("Timer: "+Integer.toString(time/60)+":"+Integer.toString(time%60));
         countDown.setAlignmentX(JComponent.CENTER_ALIGNMENT);
         countDown.setForeground(Color.WHITE);
-
+	if(time!=0){
         chronos = new Timer();
         gwt = new GameTimer(this, countDown);
         chronos.scheduleAtFixedRate(gwt, 0, 1000);
-        
+	}
         if(!resumed){
             grid=new Grid(X,Y,mines,count);
             grid.generate();
