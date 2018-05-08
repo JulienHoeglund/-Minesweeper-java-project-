@@ -31,7 +31,7 @@ public class Grid{
 		cellsLeft=cells.length-mines;
 		gameState=0;
 	}
-	public void loadCell(int id,boolean revealState, boolean mined, boolean exploded, int neighbors,int flag, boolean r, boolean dec){
+	public void loadCell(int id,boolean revealState, boolean mined, boolean exploded, int neighbors,int flag){
 		Cell c=new Cell(this,id);
 		if(mined)
 			c.setMined();

@@ -40,10 +40,8 @@ public class ResumeGame implements ActionListener{
 				exploded = f.readBoolean();
 				neighbors=f.readInt();
 				flag=f.readInt();
-				r=f.readBoolean();
-				dec=f.readBoolean();
 				time=f.readInt();
-				g.loadCell(id,revealState,mined,exploded,neighbors,flag,r,dec);
+				g.loadCell(id,revealState,mined,exploded,neighbors,flag);
 				w.setX(X);
 				w.setY(Y);
 				w.setGrid(g);

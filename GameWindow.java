@@ -99,6 +99,7 @@ public class GameWindow extends JFrame{
             bp.add(Box.createRigidArea(new Dimension(30,30)));    
             r=true;
             chronos=new Timer();
+            gwt = new GameTimer(this, countDown);
         }catch(FileNotFoundException fnfe){
         }
         
