@@ -3,4 +3,5 @@
  
  ```bash
  make
- ```
+ make test
+```
